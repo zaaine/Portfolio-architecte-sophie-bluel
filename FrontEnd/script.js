@@ -29,7 +29,7 @@ pIntroduction.classList("p");
 
 // image ne s'affiche pas encore !!!
 const imgSophieBluel = document.createElement("img");
-imgSophieBluel.setAttribute("src", "./assets/images/sophie-bluel.png")
+imgSophieBluel.setAttribute("src", "/FrontEnd/assets/images/sophie-bluel.png")
 imgSophieBluel.setAttribute("alt", "photo portrait sophie-bluel")
 imgSophieBluel.classList("img");
 sectionIntroduction.appendChild(imgSophieBluel);
@@ -64,7 +64,7 @@ function genererGallery(works) {
     // Création des balises
     const imageElement = document.createElement("img");
     imageElement.src = workElement.imageUrl;
-    imageElement.classList("gallery");
+    imageElement.classList("img");
     imageElement.setAttribute("alt", workElement.name);
 
     const titleElement = document.createElement("figcaption");
@@ -83,3 +83,11 @@ function genererGallery(works) {
   }
 }
 genererGallery(works);
+
+
+const body = document.querySelector("body")
+
+const imgSophie = document.createElement("img")
+imgSophie.src="./assets/images/sophie-bluel.png"
+imgSophie.classList="img"
+document.body.appendChild(imgSophie)
