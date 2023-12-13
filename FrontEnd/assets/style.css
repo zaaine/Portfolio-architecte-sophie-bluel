@@ -213,14 +213,13 @@ li:hover {
 }
 
 /* Ajout des filtres */
-.ContainerBtn {
-	width: 585px;
-	height: 37px;
+.containerBtn {
+  width: 585px;
+  height: 37px;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 12%;
   gap: 10px;
   padding-bottom: 51px;
 }
@@ -235,16 +234,16 @@ li:hover {
   line-height: normal;
   border-radius: 60px;
   border: 1px solid #1d6154;
-  padding: 10px 11px 9px 9px;
+  padding: 10px 11px 9px 12px;
   flex-shrink: 0;
-  background: #FFFEF8;
-  box-sizing: border-box
-  
+  background: #fffef8;
+  box-sizing: border-box;
+  cursor: pointer;
 }
 
-.filters:hover{
-	background: #1D6154;
-	color:#FFFEF8;
+.filtred {
+  background: #1d6154;
+  color: #fffef8;
 }
 
 .gallery img {
