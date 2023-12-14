@@ -1,10 +1,10 @@
 fetch("http://localhost:5678/api/works")
   .then((response) => {
-    console.log(response);
+    // console.log(response);
     return response.json();
   })
   .then((works) => {
-    console.table(works);
+    // console.table(works);
 
     genererGallery(works);
   });
@@ -31,54 +31,93 @@ function genererGallery(works) {
     projet.appendChild(imageElement);
     projet.appendChild(titleElement);
   }
-
 }
-
 
 // Gestion des boutons Gallery pour filtrage des projets
 
 // le boutons clické va afficher la class filtred
-const boutonsAction = document.querySelectorAll(".containerBtn button");
-console.log(boutonsAction);
-boutonsAction.addEventListener("click",  function (){
-    for (const button of boutonsAction ){
-        button.classlist.add("filtred")
-        console.log(button);
-    }
+ const boutonsAtion = document
+.querySelectorAll(".containerBtn button");
+for (i=0 ; i < boutonsAtion.length ; i++ ){
 
-});
+    boutonsAtion[i].addEventListener("click", (event) => {
 
+        const filtresHS = document.querySelectorAll(".containerBtn button.filtred")
+        for (j=0; j<filtresHS.length ; j++){
+            
+            filtresHS[j].classList.remove("filtred")
+        }
 
-const btnFiltreObjets = document.querySelector(".btnFiltreObjets");
-btnFiltreObjets.addEventListener("click", function (){
-    const filtreObjet = objet.filter( function (projets) {
-        return projets.category.id === 1
-    });
-    document.querySelector(".gallery").innerHTML="";
-    genererGallery(filtreObjet);
-});
+        event.target.classList.add( "filtred")
 
 
-const btnFiltreAppartements = document.querySelector(".btnFiltreAppartements")
-btnFiltreAppartements.addEventListener("click", function (){
-    const filtreAppartement = appartement.filter( function (projets) {
-        return projets.category.id === 2
-    });
-    document.querySelector(".gallery").innerHTML="";
-    genererGallery(filtreAppartement);
-});
-
-
-const btnFiltreHotelR = document.querySelector(".btnFiltreHotelR")
-btnFiltreHotelR.addEventListener("click", function (){
-    const FiltreHotelR = hotelR.filter( function (projets) {
-        return projets.category.id === 3
-    });
-    document.querySelector(".gallery").innerHTML="";
-    genererGallery(FiltreHotelR);
-});
+        console.log(event.target);
+    })
+    
+}
 
 
 
+
+
+
+// // Les boutons vont appliqués un filtre de la gallery
+// const btn1 = document.querySelector(".btnFiltreTous");
+
+//   btn1.addEventListener("click", (event) => {
+//     event.target.classList.add("filtred");
+//     btn1.classList.remove("filtersColor");
+//     console.log(btn1);
+//   });
+
+const btn2 = document
+  .querySelector(".btnFiltreObjets")
+  .addEventListener("click", mapObjet);
+const btn3 = document
+  .querySelector(".btnFiltreAppartements")
+  .addEventListener("click", mapAppartement);
+const btn4 = document
+  .querySelector(".btnFiltreHotelR")
+  .addEventListener("click", mapHotel);
+
+// console.log(boutonsAction)
+
+// btns = {btn1, btn2,btn3,btn4}
+
+// function filtred () {
+//     boutonsAction.children.classList.remove("filtersColor");
+//     boutonsAction.children.classList.add("filtred");
+// }
+
+// filtred()
+
+
+
+// const btnFiltreObjets = document.querySelector(".btnFiltreObjets");
+// btnFiltreObjets.addEventListener("click", function () {
+//   const filtreObjet = objet.filter(function (projets) {
+//     return projets.categoryId === 1;
+//   });
+//   document.querySelector(".gallery").innerHTML = "";
+//   genererGallery(filtreObjet);
+// });
+
+// const btnFiltreAppartements = document.querySelector(".btnFiltreAppartements");
+// btnFiltreAppartements.addEventListener("click", function () {
+//   const filtreAppartement = appartement.filter(function (projets) {
+//     return projets.categoryId === 2;
+//   });
+//   document.querySelector(".gallery").innerHTML = "";
+//   genererGallery(filtreAppartement);
+// });
+
+// const btnFiltreHotelR = document.querySelector(".btnFiltreHotelR");
+// btnFiltreHotelR.addEventListener("click", function () {
+//   const FiltreHotelR = hotelR.filter(function (projets) {
+//     return projets.categoryId === 3;
+//   });
+//   document.querySelector(".gallery").innerHTML = "";
+//   genererGallery(FiltreHotelR);
+// });
 
 
