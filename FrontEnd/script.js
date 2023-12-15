@@ -12,7 +12,9 @@ fetch("http://localhost:5678/api/works")
     genererGallery(works);
     const mesprojets = JSON.stringify(works);
     window.localStorage.setItem("works", mesprojets);
+   
   });
+  
 
 //   récupération du chemin categories
 fetch("http://localhost:5678/api/categories")
@@ -27,13 +29,13 @@ fetch("http://localhost:5678/api/categories")
     window.localStorage.setItem("categories", mescategories);
   });
 
-
 // génération de la gallery via Works
 function genererGallery(works) {
   // récupération de l'élément du DOM pour accueillir les travaux
   const portfolio = document.querySelector("#portfolio");
   const gallery = document.querySelector(".gallery");
   portfolio.appendChild(gallery);
+  //   console.log(works);
 
   //   création d'une boucle pour recupérer l'objet travaux et l'afficher dans la galerie
 
@@ -70,59 +72,93 @@ for (i = 0; i < boutonsAtion.length; i++) {
   });
 }
 
-// // Les boutons vont appliqués un filtre de la gallery
-// const btn1 = document.querySelector(".btnFiltreTous");
+// test 1
+// test fonction filtre
+// function filtreGallery(genererGallery) {
+//   const boutonsActionfiltre = boutonsAtion;
+//   const worksofcategories = works;
+//   console.log(boutonsActionfiltre);
+//   console.log(worksofcategories);
+//   boutonsActionfiltre.addEventListener("click", (event) => {
+//     for (k = 0; k < worksofcategories.length; k++) {
+//       boutonsActionfiltre[0].filter(worksofcategories);
+//       boutonsActionfiltre[1].filter(worksofcategories.categoryId[1]);
+//       boutonsActionfiltre[2].filter(worksofcategories.categoryId[2]);
+//       boutonsActionfiltre[3].filter(worksofcategories.categoryId[3]);
+//     }
+//     return document.querySelector(".figure").innerHTML="";
+//     genererGallery(filtreGallery)
 
-//   btn1.addEventListener("click", (event) => {
-//     event.target.classList.add("filtred");
-//     btn1.classList.remove("filtersColor");
-//     console.log(btn1);
 //   });
-
-const btn2 = document
-  .querySelector(".btnFiltreObjets")
-  .addEventListener("click", mapObjet);
-const btn3 = document
-  .querySelector(".btnFiltreAppartements")
-  .addEventListener("click", mapAppartement);
-const btn4 = document
-  .querySelector(".btnFiltreHotelR")
-  .addEventListener("click", mapHotel);
-
-// console.log(boutonsAction)
-
-// btns = {btn1, btn2,btn3,btn4}
-
-// function filtred () {
-//     boutonsAction.children.classList.remove("filtersColor");
-//     boutonsAction.children.classList.add("filtred");
 // }
 
-// filtred()
+// filtreGallery(genererGallery);
 
-// const btnFiltreObjets = document.querySelector(".btnFiltreObjets");
-// btnFiltreObjets.addEventListener("click", function () {
-//   const filtreObjet = objet.filter(function (projets) {
-//     return projets.categoryId === 1;
-//   });
-//   document.querySelector(".gallery").innerHTML = "";
-//   genererGallery(filtreObjet);
+// test 2 :
+// function galleryFiltred (works) {
+
+//     const buttonFiltreObjet = boutonsAtion
+//     const worksfiltred = mescategories;
+//     buttonFiltreObjet.addEventListener("click", (event) => {
+//         for (k = 1 ; k <buttonFiltreObjet.length; k++)
+//         for (l = 0 ; l <worksfiltred.length; l++)
+
+//     if(event.target[k] === worksfiltred[l]  ){
+//         return works.category.name === worksfiltred.name
+//     } else {
+//         console.log("erreur affichage gallery")
+//     }
+//     document.querySelector(".figure").innerHTML="";
+//     genererGallery(galleryFiltred)
+
 // });
 
-// const btnFiltreAppartements = document.querySelector(".btnFiltreAppartements");
-// btnFiltreAppartements.addEventListener("click", function () {
-//   const filtreAppartement = appartement.filter(function (projets) {
-//     return projets.categoryId === 2;
-//   });
-//   document.querySelector(".gallery").innerHTML = "";
-//   genererGallery(filtreAppartement);
-// });
+// }
 
-// const btnFiltreHotelR = document.querySelector(".btnFiltreHotelR");
-// btnFiltreHotelR.addEventListener("click", function () {
-//   const FiltreHotelR = hotelR.filter(function (projets) {
-//     return projets.categoryId === 3;
-//   });
-//   document.querySelector(".gallery").innerHTML = "";
-//   genererGallery(FiltreHotelR);
-// });
+// galleryFiltred (works)
+
+// test 3
+
+// function objetfiltre (works) {
+
+//     const objet = document.querySelector(".btnFiltreObjets");
+
+//     objet.addEventListener("click", (event) => {
+//         const objetfiltred = works.filter(function (projet){
+//             return projet.categoryId = 2;
+//         })
+//         document.querySelector(".gallery").innerHTML="";
+//         genererGallery(objetfiltred)
+
+//     } );
+// }
+
+// objetfiltre(works)
+
+// test 4
+
+// const objet = document.querySelector(".btnFiltreObjets");
+// objet.addEventListener("click", (event) =>{
+//     const listeObjet = mesprojets;
+//     for ( let l=0 ; l<listeObjet.length ; l++){
+//         for (let m= 0; m<listeObjet.length; m++){
+//             return listeObjet[m].name = "Objets"
+//         }
+//     }
+// })
+
+// console.log(listeObjet[m] );
+// console.log(listeObjet);
+
+test 5
+
+console.log(mesprojets);
+const boutonObjet = document.querySelector(".btnFiltreObjets");
+boutonObjet.addEventListener("click", function () {
+  const objetFiltrees = mesprojets.filter(obj => obj.categoryId === 2);
+  console.log(objetFiltrees);
+
+  document.querySelector(".gallery").innerHTML = "";
+  genererGallery(objetFiltrees);
+});
+
