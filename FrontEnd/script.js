@@ -1,3 +1,7 @@
+let mesprojets = window.localStorage.getItem("works");
+let mescategories = window.localStorage.getItem("categories");
+
+// récupération de la galery via API
 fetch("http://localhost:5678/api/works")
   .then((response) => {
     // console.log(response);
@@ -5,10 +9,26 @@ fetch("http://localhost:5678/api/works")
   })
   .then((works) => {
     // console.table(works);
-
     genererGallery(works);
+    const mesprojets = JSON.stringify(works);
+    window.localStorage.setItem("works", mesprojets);
   });
 
+//   récupération du chemin categories
+fetch("http://localhost:5678/api/categories")
+  .then((response2) => {
+    // console.log(response);
+    return response2.json();
+  })
+  .then((categories) => {
+    // console.table(category);
+    // genererGallery(works);
+    const mescategories = JSON.stringify(categories);
+    window.localStorage.setItem("categories", mescategories);
+  });
+
+
+// génération de la gallery via Works
 function genererGallery(works) {
   // récupération de l'élément du DOM pour accueillir les travaux
   const portfolio = document.querySelector("#portfolio");
@@ -36,30 +56,19 @@ function genererGallery(works) {
 // Gestion des boutons Gallery pour filtrage des projets
 
 // le boutons clické va afficher la class filtred
- const boutonsAtion = document
-.querySelectorAll(".containerBtn button");
-for (i=0 ; i < boutonsAtion.length ; i++ ){
+const boutonsAtion = document.querySelectorAll(".containerBtn button");
+for (i = 0; i < boutonsAtion.length; i++) {
+  boutonsAtion[i].addEventListener("click", (event) => {
+    const filtresHS = document.querySelectorAll(".containerBtn button.filtred");
+    for (j = 0; j < filtresHS.length; j++) {
+      filtresHS[j].classList.remove("filtred");
+    }
 
-    boutonsAtion[i].addEventListener("click", (event) => {
+    event.target.classList.add("filtred");
 
-        const filtresHS = document.querySelectorAll(".containerBtn button.filtred")
-        for (j=0; j<filtresHS.length ; j++){
-            
-            filtresHS[j].classList.remove("filtred")
-        }
-
-        event.target.classList.add( "filtred")
-
-
-        console.log(event.target);
-    })
-    
+    console.log(event.target);
+  });
 }
-
-
-
-
-
 
 // // Les boutons vont appliqués un filtre de la gallery
 // const btn1 = document.querySelector(".btnFiltreTous");
@@ -91,8 +100,6 @@ const btn4 = document
 
 // filtred()
 
-
-
 // const btnFiltreObjets = document.querySelector(".btnFiltreObjets");
 // btnFiltreObjets.addEventListener("click", function () {
 //   const filtreObjet = objet.filter(function (projets) {
@@ -119,5 +126,3 @@ const btn4 = document
 //   document.querySelector(".gallery").innerHTML = "";
 //   genererGallery(FiltreHotelR);
 // });
-
-
