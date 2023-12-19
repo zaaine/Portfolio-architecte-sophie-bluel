@@ -298,3 +298,12 @@ footer nav ul {
   justify-content: flex-end;
   margin: 2em;
 }
+
+
+.visibility{
+	visibility: hidden;
+}
+
+.figure{
+	display: block;
+}
