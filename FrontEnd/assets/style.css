@@ -172,13 +172,14 @@ nav ul {
 
 nav a {
   color: #000;
-	text-decoration: none;		
+  text-decoration: none;
   text-align: center;
   font-family: Work Sans;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  
 }
 nav li a {
   padding: 0 10px;
@@ -310,10 +311,63 @@ footer nav ul {
   margin: 2em;
 }
 
-.visibility {
-  visibility: hidden;
-}
+
 
 .figure {
   display: block;
 }
+/* Page Login */
+
+.mainContainer_login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title_login {
+  color: #1d6154;
+  text-align: center;
+  font-family: Syne;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding-bottom: 3.75rem;
+  padding-top: 5.12rem;
+}
+
+label {
+  color: #3d3d3d;
+  font-family: Work Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  word-wrap: normal;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+input {
+  background: #fff;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+  font-size: 1.2em;
+  height: 51px;
+  border: none;
+  width: 379px;
+  margin-bottom: 1rem;
+ 
+}
+
+.input_connection, .mp_forget{
+	display: flex;
+	flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+	margin: 1rem auto ;
+	color: #000;
+}
+
