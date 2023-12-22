@@ -169,7 +169,18 @@ nav ul {
   align-items: center;
   list-style-type: none;
 }
-nav li {
+
+nav a {
+  color: #000;
+	text-decoration: none;		
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+nav li a {
   padding: 0 10px;
   font-size: 1.2em;
 }
@@ -238,9 +249,9 @@ li:hover {
   cursor: pointer;
 }
 
-.filtersColor{
-	color: #1d6154;
-	background: #fffef8;
+.filtersColor {
+  color: #1d6154;
+  background: #fffef8;
 }
 
 .filtred {
@@ -299,11 +310,10 @@ footer nav ul {
   margin: 2em;
 }
 
-
-.visibility{
-	visibility: hidden;
+.visibility {
+  visibility: hidden;
 }
 
-.figure{
-	display: block;
+.figure {
+  display: block;
 }
