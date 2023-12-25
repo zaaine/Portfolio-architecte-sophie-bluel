@@ -179,7 +179,6 @@ nav a {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  
 }
 nav li a {
   padding: 0 10px;
@@ -311,8 +310,6 @@ footer nav ul {
   margin: 2em;
 }
 
-
-
 .figure {
   display: block;
 }
@@ -359,15 +356,19 @@ input {
   border: none;
   width: 379px;
   margin-bottom: 1rem;
- 
 }
 
-.input_connection, .mp_forget{
-	display: flex;
-	flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-	margin: 1rem auto ;
-	color: #000;
+.input_connection,
+.mp_forget {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin: 1rem auto;
+  color: #000;
 }
 
+.input-ko {
+  border-color: red;
+  border: solid;
+}

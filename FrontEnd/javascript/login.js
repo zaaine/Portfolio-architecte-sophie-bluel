@@ -3,67 +3,83 @@
 // mise en place d'une regle de conformité du champs à remplir
 // *** Cette fonction valide la présence d'un mail au bon format
 
-function validerEmail(baliseEmail) {
-  let emailRegExp = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+");
-  if (!emailRegExp.test(baliseEmail)) {
-    throw new Error("L'email n'est pas valide.");
-    let message = "L'email n'est pas valide.";
-    // afficherMessageErreur(message)
-    
-  }
+function validerEmail() {
+  const email = document.getElementById("email");
+  const labelEmail = document.querySelector(" label[for=Email] ");
+
+  email.addEventListener("change", (event) => {
+    // let baliseEmail = email.value;
+    let baliseEmail = email.value;
+    let emailRegExp = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+");
+    if (!emailRegExp.test(baliseEmail)) {
+      console.log("L'email n'est pas valide.");
+      labelEmail.style.color = "red";
+      message = "L'email n'est pas valide.";
+      afficherMessageErreur(message);
+    } else {
+      labelEmail.style.color = "green";
+    }
+  });
 }
 
+validerEmail();
 // cette fonction verifie que le mot de passe contient plus de 4 caractères
+// ***** Il faut retirer la fonction affichermessageErreur quand le else est ok
 
-function validerPassword(balisePassword) {
-  let passwordRegExp = new RegExp("[A-Za-z0-9._-]");
-  if (!passwordRegExp.test(balisePassword) < 4) {
-    throw new Error("Le mot de passe est incorrect.");
-    let message = "Le mot de passe est incorrect.";
-    // afficherMessageErreur(message)
-    // console.log(message);
-  }
+function validerPassword() {
+  const password = document.getElementById("password");
+  const labelPassword = document.querySelector(" label[for=password] ");
+
+  password.addEventListener("change", (event) => {
+    let balisePassword = password.value;
+    let passwordRegExp = new RegExp("[a-z0-9._-]{6}");
+
+    if (!passwordRegExp.test(balisePassword)) {
+      console.log("mot de passe ko ");
+      labelPassword.style.color = "red";
+      message = "Le mot de passe est erroné";
+      afficherMessageErreur(message);
+    } else {
+      console.log("mot de passe ok");
+      labelPassword.style.color = "green";
+    }
+  });
 }
 
+validerPassword();
 // Cette fonction va afficher un message d'erreur correspondant
 
-function afficherMessageErreur(message) {
+function afficherMessageErreur() {
   let spanErreurMessage = document.querySelector(".spanErreurMessage");
-
-  if (!spanErreurMessage) {
-    spanErreurMessage.innerText = `${message}`;
-    spanErreurMessage.style.color = "red"
-    
-  }
+  let textErreur = document.querySelector(".textErreur");
+  textErreur = document.createElement("p");
+  spanErreurMessage.append(textErreur);
+  textErreur.innerText = message;
+  textErreur.style.color = "red";
 }
-
-
 
 // cette fonction va gerer les informations du formulaire et du submit
 
-function gestionLogin(validerEmail,validerPassword) {
+function gestionLogin(validerEmail, validerPassword) {
   // Gestion du submit "connection "sur le formulaire
 
   let btnConnection = document.querySelector(".input_connection");
+  let usersLogin = {
+    email: document.getElementById("email"),
+    password: document.getElementById("password"),
+  };
+
   btnConnection.addEventListener("submit", (event) => {
     event.preventDefault();
-    
- });
-
-  try {
-    const email = document.getElementById("email");
-    let baliseEmail = email.value;
-    validerEmail(baliseEmail);
-
-    const password = document.getElementById("password");
-    let balisePassword = password.value;
-    validerPassword(balisePassword);
-
-  } catch (erreur) {
-    afficherMessageErreur();
-    console.log("Le formulaire est ko");
-  }
-
+    if (
+      !emailRegExp.test(baliseEmail) &&
+      !passwordRegExp.test(balisePassword)
+    ) {
+      console.log("formulaire ok");
+    } else {
+      console.log("formulaire kO");
+    }
+  });
 }
 
-gestionLogin();
+gestionLogin(validerEmail, validerPassword)
