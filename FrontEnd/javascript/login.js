@@ -1,5 +1,3 @@
-// import fonction de gestion de l'onglet nav login et logout
-// import {isconnected} from "FrontEnd/script"
 
 // Gestion de la page login.html
 
@@ -88,7 +86,7 @@ function gestionLogin(validerEmail, validerPassword) {
     password: document.getElementById("password"),
   };
 
-  console.log(usersLogin);
+  
 
   btnConnection.addEventListener("click", (event) => {
     event.preventDefault();
@@ -107,6 +105,7 @@ function gestionLogin(validerEmail, validerPassword) {
       .then((response) => {
         if (response.status === 200) {
           return response.json();
+          isconnected();
         } else if (response.status === 401) {
           message = "Not Authorized === erreur 401";
           afficherMessageErreur(message);
@@ -124,8 +123,7 @@ function gestionLogin(validerEmail, validerPassword) {
           localStorage.setItem("token", data.token);
           // localStorage.setItem("token", data.token)
           window.location = "index.html";
-          isconnected();
-
+         
           console.log(data);
         } else {
           throw new Error("l'objet DATA n'a pas été chargé");
@@ -138,20 +136,3 @@ function gestionLogin(validerEmail, validerPassword) {
 gestionLogin();
 
 
-// fonction qui va gerer le login et le logout de l'utilisateur
-
-function isconnected() {
-     
-    let login = document.getElementById("login");
-    let logout = document.getElementById("logout");
-
-    login.style.display = "none";
-    logout.style.display = "block";
-
-
-    logout.addEventListener("click",() => {
-        logout.style.display = "none";
-        login.style.display = "block";
-              
-}
-)};

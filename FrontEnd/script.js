@@ -1,5 +1,5 @@
 // // import fonction de gestion de l'onglet nav login et logout
-import {isconnected} from "./javascript/login"
+// import {isconnected} from "./login.js";
 
 // stockage des données API dans le local storage
 let mesprojets = window.localStorage.getItem("works");
@@ -62,6 +62,8 @@ function genererGallery(works) {
     projet.appendChild(imageElement);
     projet.appendChild(titleElement);
   }
+
+ 
 }
 
 // Gestion des boutons Gallery pour filtrage des projets
@@ -154,3 +156,27 @@ function hotelEtRestaurantFiltre() {
 }
 
 
+// fonction qui va gerer le login et le logout de l'utilisateur
+
+function isconnected(gestionLogin) {
+  
+    if (localStorage.token) {
+
+        let login = document.getElementById("login");
+        let logout = document.getElementById("logout");
+    
+        login.style.display = "none";
+        logout.style.display = "block";
+    
+    
+        logout.addEventListener("click",() => {
+            login.style.display = "block";
+            logout.style.display = "none";
+        localStorage.removeItem("token")    
+
+    })
+              
+};
+}
+
+isconnected()
