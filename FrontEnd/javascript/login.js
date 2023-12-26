@@ -18,6 +18,7 @@ function validerEmail() {
       afficherMessageErreur(message);
     } else {
       labelEmail.style.color = "green";
+      EffacerMessageErreur();
     }
   });
 }
@@ -42,6 +43,7 @@ function validerPassword() {
     } else {
       console.log("mot de passe ok");
       labelPassword.style.color = "green";
+      EffacerMessageErreur();
     }
   });
 }
@@ -50,12 +52,27 @@ validerPassword();
 // Cette fonction va afficher un message d'erreur correspondant
 
 function afficherMessageErreur() {
+  
+  
   let spanErreurMessage = document.querySelector(".spanErreurMessage");
   let textErreur = document.querySelector(".textErreur");
-  textErreur = document.createElement("p");
+
+//   textErreur = document.createElement("p");
   spanErreurMessage.append(textErreur);
   textErreur.innerText = message;
   textErreur.style.color = "red";
+}
+
+function EffacerMessageErreur(afficherMessageErreur) {
+  let spanErreurMessage = document.querySelector(".spanErreurMessage");
+  let textErreur = document.querySelector(".textErreur");
+  spanErreurMessage.append(textErreur);
+  textErreur.innerText = message;
+  textErreur.style.color = "white";
+  //   spanErreurMessage.append(textErreur);
+  //   textErreur.remove();
+  //   message.remove()
+
 }
 
 // cette fonction va gerer les informations du formulaire et du submit
@@ -82,4 +99,4 @@ function gestionLogin(validerEmail, validerPassword) {
   });
 }
 
-gestionLogin(validerEmail, validerPassword)
+gestionLogin(validerEmail, validerPassword);
