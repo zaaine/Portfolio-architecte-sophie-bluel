@@ -1,5 +1,6 @@
 let mesprojets = window.localStorage.getItem("works");
 let mescategories = window.localStorage.getItem("categories");
+let usersLogin = window.localStorage.getItem("data")
 
 // récupération de la galery via API
 fetch("http://localhost:5678/api/works")
