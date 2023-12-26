@@ -188,6 +188,16 @@ nav li a {
 li:hover {
   color: #b1663c;
 }
+/* Gestion de login et logout */
+
+#logout{
+	display: none;
+}
+
+#login{
+	display:block
+}
+
 #introduction {
   display: flex;
   align-items: center;
@@ -313,6 +323,10 @@ footer nav ul {
 .figure {
   display: block;
 }
+
+
+
+/* ************************************************************ */
 /* Page Login */
 
 .mainContainer_login {
@@ -368,7 +382,4 @@ input {
   color: #000;
 }
 
-.input-ko {
-  border-color: red;
-  border: solid;
-}
+

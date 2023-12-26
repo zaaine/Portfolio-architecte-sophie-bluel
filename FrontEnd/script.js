@@ -1,6 +1,13 @@
+// // import fonction de gestion de l'onglet nav login et logout
+import {isconnected} from "./javascript/login"
+
+// stockage des données API dans le local storage
 let mesprojets = window.localStorage.getItem("works");
 let mescategories = window.localStorage.getItem("categories");
-let usersLogin = window.localStorage.getItem("data")
+let usersLogin = window.localStorage.getItem("data");
+
+
+
 
 // récupération de la galery via API
 fetch("http://localhost:5678/api/works")
@@ -145,3 +152,5 @@ function hotelEtRestaurantFiltre() {
     }
   });
 }
+
+
