@@ -414,9 +414,7 @@ input {
   cursor: pointer;
 
 }
-/* .modal_active{
-	display: block;
-} */
+
 
 .modal {
   position: fixed;
@@ -447,7 +445,9 @@ input {
 
 .modal-content {
  
-  display: grid;
+  /* display: grid; */
+  display:flex;
+  flex-direction: column;
   background: white;
   border-radius: 0.625rem;
   border-radius: 0.625rem;
@@ -458,7 +458,7 @@ input {
   margin: 15% auto;
   padding: 20px;
   border: 1px solid #888;
-  border-radius: 10px;
+  
   max-width: 650px;
   text-align: center;
   max-height: 670px;
@@ -488,13 +488,32 @@ input {
   top: 6rem;
 }
 
-.galleryModal {
-	width: 80%;
-    align-items: center;
-    justify-content: center;
-    padding-left: 4.5rem;
-    bottom: 11rem;
-    position: relative;
-    display: grid;
-    justify-items: stretch;
+.contenairGallery {
+	/* width: 80%;  */
+     /* align-items: center;
+    justify-content: center; */
+    /* padding-left: 4.5rem;
+    bottom: 11rem; */
+    /* position: relative; */
+    /* display: grid;
+    justify-items: stretch; */
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	/* grid-template-rows: repeat(3, auto); */
+	grid-row-gap: 20px;
+	grid-column-gap: 10px;
+	margin: 40px 80px 0px 80px;
+	padding-bottom: 30px;
+	border-bottom: solid 2px #d0d0d0;
+	
+	
 }
+
+.photoModal{
+	width: 4.88269rem;
+	height: 6.505rem;
+
+	
+
+}
+
