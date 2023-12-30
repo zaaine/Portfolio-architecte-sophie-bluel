@@ -190,12 +190,12 @@ li:hover {
 }
 /* Gestion de login et logout */
 
-#logout{
-	display: none;
+#logout {
+  display: none;
 }
 
-#login{
-	display:block
+#login {
+  display: block;
 }
 
 #introduction {
@@ -312,6 +312,7 @@ input[type="submit"] {
   width: 180px;
   text-align: center;
   border-radius: 60px;
+  cursor: pointer;
 }
 
 footer nav ul {
@@ -323,8 +324,6 @@ footer nav ul {
 .figure {
   display: block;
 }
-
-
 
 /* ************************************************************ */
 /* Page Login */
@@ -382,4 +381,120 @@ input {
   color: #000;
 }
 
+/* Is connected to modify */
 
+.container-title_projet {
+  flex: 1;
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: baseline;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.isconnectedTomodify {
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  /* height: 1rem; */
+  position: relative;
+  bottom: 4px;
+  display: none;
+}
+
+/* Modal galerie photo */
+
+.open-modal {
+  cursor: pointer;
+
+}
+/* .modal_active{
+	display: block;
+} */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: stretch;
+  align-content: center;
+  flex-direction: row;
+  background-color: #333333d3;
+  overflow: auto;
+  /* display: none; */
+}
+
+
+
+.modalTitle {
+  color: #000;
+  text-align: center;
+  font-family: Work Sans;
+  font-size: 1.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  position: relative;
+  bottom: 6rem;
+}
+
+.modal-content {
+ 
+  display: grid;
+  background: white;
+  border-radius: 0.625rem;
+  border-radius: 0.625rem;
+  width: 39.375rem;
+  height: 43rem;
+  margin: auto;
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  max-width: 650px;
+  text-align: center;
+  max-height: 670px;
+}
+
+.modalClose {
+  width: 95%;
+  height: 1.5rem;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  justify-content: flex-end;
+  border: none;
+  background-color: white;
+  margin-top: 1.63rem;
+  cursor: pointer;
+}
+
+.btnAddModal {
+  font-size: 0.875rem;
+  font-style: normal;
+  line-height: normal;
+  width: 14.8125rem;
+  height: 2.25rem;
+  position: relative;
+  top: 6rem;
+}
+
+.galleryModal {
+	width: 80%;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4.5rem;
+    bottom: 11rem;
+    position: relative;
+    display: grid;
+    justify-items: stretch;
+}

@@ -167,16 +167,25 @@ function isconnected(gestionLogin) {
     
         login.style.display = "none";
         logout.style.display = "block";
+
+
+        let isconnectedTomodify = document.querySelector(".isconnectedTomodify")
+        isconnectedTomodify.style.display = "block"
+
+        let containerBtn = document.querySelector(".containerBtn")
+        containerBtn.style.display = "none"
     
     
         logout.addEventListener("click",() => {
             login.style.display = "block";
             logout.style.display = "none";
+            containerBtn.style.display = "block"
         localStorage.removeItem("token")    
 
     })
-              
+     
 };
 }
 
 isconnected()
+

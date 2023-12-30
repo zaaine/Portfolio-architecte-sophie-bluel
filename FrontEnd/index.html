@@ -9,6 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<script src="https://kit.fontawesome.com/ccf7b8e84b.js" crossorigin="anonymous"></script>
 	
 	<!-- <script type="module" src="categories.js"></script>
 	<script type="module" src="works.js"></script> -->
@@ -39,7 +40,13 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2 class="mesProjets">Mes Projets</h2>
+		<div class= "container-title_projet">
+			<h2 class="mesProjets">Mes Projets</h2>
+			 <a class="isconnectedTomodify open-modal" href="#" > 
+				<i class="fa-regular fa-pen-to-square"></i>
+				Modifier </a>
+		</div>
+
 		<div class="containerBtn">
 			<button class="filters filtersColor" id="btnFiltreTous" > Tous</button>	
 			<button class="filters filtersColor" id="btnFiltreObjets" > Objets</button>	
@@ -65,6 +72,18 @@
 	</section>
 </main>
 
+<aside class="modal open-modal" role="dialog">
+	<div class="modal-content">
+	   <a class="modalClose" href="index.html">X</a>
+	  <h1 class="modalTitle">Galerie photo</h1>
+	  <figure class="galleryModal">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet distinctio ut beatae. Blanditiis incidunt dolor, consectetur aperiam nisi, laudantium neque molestias id enim, corrupti magni. Ipsam dolor magnam adipisci perferendis.
+
+	  </figure>
+	  <input class="btnAddModal" type="submit" value="Ajouter une photo" />
+	</div>
+  </aside>
+
 <footer>
 	<nav>
 		<ul>
@@ -74,5 +93,6 @@
 </footer>
 <script src="script.js" ></script>
 <script type="module" src="./javascript/login.js" > </script>
+<script type="module" src="./javascript/modal.js" > </script>
 </body>
 </html>

@@ -104,8 +104,9 @@ function gestionLogin(validerEmail, validerPassword) {
     })
       .then((response) => {
         if (response.status === 200) {
+          
           return response.json();
-          isconnected();
+          
         } else if (response.status === 401) {
           message = "Not Authorized === erreur 401";
           afficherMessageErreur(message);
@@ -123,13 +124,14 @@ function gestionLogin(validerEmail, validerPassword) {
           localStorage.setItem("token", data.token);
           // localStorage.setItem("token", data.token)
           window.location = "index.html";
-         
           console.log(data);
         } else {
           throw new Error("l'objet DATA n'a pas été chargé");
-          console.log(Error);
+          
         }
-      });
+      })
+    .catch ( (error) => console.log(error) );
+
   });
 }
 
