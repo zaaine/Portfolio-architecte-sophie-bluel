@@ -5,6 +5,7 @@
 let mesprojets = window.localStorage.getItem("works");
 let mescategories = window.localStorage.getItem("categories");
 let usersLogin = window.localStorage.getItem("data");
+let token = window.localStorage.getItem("token");
 
 
 
@@ -12,7 +13,7 @@ let usersLogin = window.localStorage.getItem("data");
 // récupération de la galery via API
 fetch("http://localhost:5678/api/works")
   .then((response) => {
-    // console.log(response);
+    
     return response.json();
   })
   .then((works) => {
@@ -25,12 +26,11 @@ fetch("http://localhost:5678/api/works")
 //   récupération du chemin categories
 fetch("http://localhost:5678/api/categories")
   .then((response2) => {
-    // console.log(response);
+   
     return response2.json();
   })
   .then((categories) => {
-    // console.table(category);
-    // genererGallery(works);
+  
     const mescategories = JSON.stringify(categories);
     window.localStorage.setItem("categories", mescategories);
   });
@@ -41,12 +41,12 @@ function genererGallery(works) {
   const portfolio = document.querySelector("#portfolio");
   const gallery = document.querySelector(".gallery");
   portfolio.appendChild(gallery);
-  //   console.log(works);
+  
 
   //   création d'une boucle pour recupérer l'objet travaux et l'afficher dans la galerie
 
   for (const projets of works) {
-    // console.log( projets);
+   
     const projet = document.createElement("figure");
 
     const imageElement = document.createElement("img");
@@ -79,7 +79,7 @@ for (i = 0; i < boutonsAtion.length; i++) {
 
     event.target.classList.add("filtred");
 
-    // console.log(event.target);
+    
   });
 }
 
@@ -110,7 +110,7 @@ function objetfiltre() {
   const projetsObjet = document.querySelectorAll(".gallery figure ");
   projetsObjet.forEach((projetObjet) => {
     const categoryId = projetObjet.getAttribute("category-id");
-    // console.log(categoryId);
+    
     if (categoryId === "1") {
       projetObjet.style.display = "block";
     } else {

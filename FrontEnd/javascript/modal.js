@@ -25,7 +25,7 @@ function createModalGallery() {
   fetch("http://localhost:5678/api/works")
     .then((response) => {
       return response.json();
-    })
+    })’
     .then((mesprojets) => {
       const galleryModal = document.querySelector(".contenairGallery");
       galleryModal.classList.add = "contenairGallery";
@@ -49,8 +49,8 @@ function createModalGallery() {
         projet.appendChild(deleteIcon);
         deleteIcon.addEventListener("click", (event) => {
           event.preventDefault();
-        //   const work = projet
-          deleteWork(work.id);
+        //   event.target = workId
+          deleteWork(projets.id);
         });
       }
     });
@@ -60,12 +60,11 @@ createModalGallery();
 
 // création d'une fonction pour supprimer des projets de la galerie
 
-async function deleteWork(workId) {
-  const token = sessionStorage.getItem("token");
-//   const workId = work;
+function deleteWork(workId) {
+    const token = sessionStorage.getItem("token");
 
 
-  await fetch(`http://localhost:5678/api/works/${workId}`, {
+  fetch(`http://localhost:5678/api/works/${workId}`, {
     method: "DELETE",
     headers: {
       accept: "*/*",
@@ -73,7 +72,7 @@ async function deleteWork(workId) {
     },
   }).then((response) => {
     if (response.status === 200) {
-      const projetReset = document.querySelector(`projet[data-id = "${workId}"]`);
+      const projetReset = document.querySelector(`figure[data-id = "${workId}"]`);
       projetReset.style.display = "none";
     } else if (response.status === 401) {
       throw new Error("Unauthorized");
