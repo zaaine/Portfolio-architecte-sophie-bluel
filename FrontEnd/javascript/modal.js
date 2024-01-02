@@ -5,18 +5,31 @@ function modal() {
   openModal.addEventListener("click", () => {
     const modal = document.querySelector(".modal");
     modal.style.display = "block";
-  });
+});
 
-  const modalClose = document.querySelector(".modalClose");
-  modalClose.addEventListener("click", () => {
+    const modalClose = document.querySelector(".modalClose");
+    modalClose.addEventListener("click", (event) => {
+        const modal = document.querySelector(".modal");
+        modal.style.display = "none";
+        event.preventDefault();
+    });
+   
     const modal = document.querySelector(".modal");
-    modal.style.display = "none";
+        modal.addEventListener("click", (event) => {
+        modal.style.display = "none";
+        event.preventDefault();
+        console.log("window");
+    
   });
-
-  // rajouter un code pour fermer la modal lorsqu'on click à l'exterieur
+  
 }
 
-modal();
+//   la modale doit se fermer au click sur l'exterieur de la modal
+
+modal()
+
+
+// closeModal()
 
 // fonction pour insérer les photos dans la gallery-modal
 // fontion generer les photos présente dans l'API
@@ -25,7 +38,7 @@ function createModalGallery() {
   fetch("http://localhost:5678/api/works")
     .then((response) => {
       return response.json();
-    })’
+    })
     .then((mesprojets) => {
       const galleryModal = document.querySelector(".contenairGallery");
       galleryModal.classList.add = "contenairGallery";
@@ -47,9 +60,9 @@ function createModalGallery() {
         const deleteIcon = document.createElement("i");
         deleteIcon.className = "fa-solid fa-trash-can icon-delete";
         projet.appendChild(deleteIcon);
+
         deleteIcon.addEventListener("click", (event) => {
           event.preventDefault();
-        //   event.target = workId
           deleteWork(projets.id);
         });
       }
@@ -61,8 +74,7 @@ createModalGallery();
 // création d'une fonction pour supprimer des projets de la galerie
 
 function deleteWork(workId) {
-    const token = sessionStorage.getItem("token");
-
+  const token = localStorage.getItem("token");
 
   fetch(`http://localhost:5678/api/works/${workId}`, {
     method: "DELETE",
@@ -72,8 +84,11 @@ function deleteWork(workId) {
     },
   }).then((response) => {
     if (response.status === 200) {
-      const projetReset = document.querySelector(`figure[data-id = "${workId}"]`);
+      const projetReset = document.querySelector(
+        `figure[data-id = "${workId}"]`
+      );
       projetReset.style.display = "none";
+     
     } else if (response.status === 401) {
       throw new Error("Unauthorized");
     } else if (response.status === 500) {

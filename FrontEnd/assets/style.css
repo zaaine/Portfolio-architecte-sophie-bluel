@@ -478,6 +478,7 @@ input {
   height: 2.25rem;
   position: relative;
   top: 1.81rem;
+  margin-top: 11rem !important;
 }
 
 .contenairGallery {
