@@ -73,23 +73,25 @@
 </main>
 
 <!-- Modal Gallery Photo -->
-<aside class="modal open-modal" role="dialog">
+<aside class="modal" role="dialog">
+	
 	<div class="modal-content">
-		<a class="modalClose position_X" href="">X</a>
+		<a class="modalClose " href="">X</a>
 	  <h1 class="modalTitle titleGalleryModal">Galerie photo</h1>
 	  <div class="contenairGallery">
 		
 	  </div>
 	  <input class="btnAddModal" type="submit" value="Ajouter une photo" />
 	</div>
+</div>
   </aside>
 
 <!-- Modal 2 : Ajouter photo -->
-  <aside class="openmodal2" >
+  <aside class="openmodal2 modal2" >
 	<div class="modal2_Containt">
 	  <div class="block_nav">
 		<a href="#"> <i class="fa-solid fa-arrow-left returnGallery"></i> </a>
-		<a class="modalClose position_X" href="index.html">X</a>
+		<a class="modalClose " href="index.html">X</a>
 	  </div>
 	  <h1 class="modalTitle ">Ajout photo</h1>
 
@@ -108,8 +110,8 @@
 			  <p>jpg, png :4mo max</p>
 			</div>
 		  </div>
-		  <input type="file"id="image-input" name="image-input" onchange="document.getElementById('preview-input').src = window.URL.createObjectURL(this.files[0])"
-			style="opacity: 0; height: 1px";required/>
+		  <input class="input_photo" type="file" name="image-input" onchange="document.getElementById('preview-input').src = window.URL.createObjectURL(this.files[0])"
+			required/>
 		  <div class="form_modal2">
 			<label for="name">Titre</label>
 			<input type="text"autocomplete="off" name="title-input" id="title-input"required/>
@@ -126,7 +128,7 @@
 		  </div>
 		</form>
 	  </div>
-	</div>
+
   </aside>
 
 
