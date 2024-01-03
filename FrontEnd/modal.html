@@ -17,12 +17,54 @@
       crossorigin="anonymous"
     ></script>
 
-    <!-- <script type="module" src="categories.js"></script>
-        <script type="module" src="works.js"></script> -->
+   
   </head>
   <body>
-   
-    <aside class="modal open-modal" role="dialog">
+    <section class="openmodal2" display="none" >
+      <div class="modal2_Containt">
+        <div class="block_nav">
+          <a href="#"> <i class="fa-solid fa-arrow-left returnGallery"></i> </a>
+          <a class="modalClose position_X" href="index.html">X</a>
+        </div>
+        <h1 class="modalTitle">Ajout photo</h1>
+
+        <div class="container_modal2">
+          <form class="modal2_formulaire" id="image-form" method="post">
+            <div class="preview-image" >
+              <img id="preview-input" width="100" />
+            </div>
+            <div class="image_input">
+              <div class="preview_text">
+                <i class="fa-solid fa-image icons-img"></i>
+
+                <label for="image-input" name="Titre" class="button_add_picture"
+                  >+ Ajouter photo</label
+                >
+                <p>jpg, png :4mo max</p>
+              </div>
+            </div>
+            <input type="file"id="image-input" name="image-input" onchange="document.getElementById('preview-input').src = window.URL.createObjectURL(this.files[0])"
+              style="opacity: 0; height: 1px";required/>
+            <div class="form_modal2">
+              <label for="name">Titre</label>
+              <input type="text"autocomplete="off" name="title-input" id="title-input"required/>
+              <label for="name">Catégorie</label>
+              <select id="category-input" name="category-input" type="number" min="1" max="3" required>
+                <option>
+                  <option value="Objets">Objets</option>
+                  <option value="Appartements">Appartements</option>
+                  <option value="Hôtels&Restaurants">Hôtels & Restaurants</option>
+                </option>
+              </select>
+              <hr/>
+              <button class="button_send_new_work" type="submit"> valider </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- <aside class="modal open-modal" role="dialog">
       <div class="modal-content">
          <a class="modalClose" href="index.html">X</a>
         <h1 class="modalTitle">Galerie photo</h1>
@@ -32,7 +74,7 @@
         </figure>
         <input class="btnAddModal" type="submit" value="Ajouter une photo" />
       </div>
-    </aside>
+    </aside> -->
     <footer></footer>
     <script src="script.js"></script>
     <script type="module" src="./javascript/login.js"></script>
