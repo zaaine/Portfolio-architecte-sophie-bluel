@@ -122,7 +122,6 @@ function gestionLogin(validerEmail, validerPassword) {
       .then((data) => {
         if (data) {
           localStorage.setItem("token", data.token);
-          
           window.location = "index.html";
           console.log(data);
         } else {

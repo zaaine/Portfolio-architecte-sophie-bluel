@@ -110,17 +110,17 @@
 			  <p>jpg, png :4mo max</p>
 			</div>
 		  </div>
-		  <input class="input_photo" type="file" name="image-input" onchange="document.getElementById('preview-input').src = window.URL.createObjectURL(this.files[0])"
+		  <input id="input_photo" type="file" name="image-input" class="input_photo" onchange="document.getElementById('preview-input').src = window.URL.createObjectURL(this.files[0])"
 			required/>
 		  <div class="form_modal2">
 			<label for="name">Titre</label>
 			<input type="text"autocomplete="off" name="title-input" id="title-input"required/>
 			<label for="name">Catégorie</label>
-			<select id="category-input" name="category-input" type="number" min="1" max="3" required>
+			<select id="category-input" class="category-input" name="category-input" type="number" min="1" max="3" required>
 			  <option>
-				<option value="Objets">Objets</option>
-				<option value="Appartements">Appartements</option>
-				<option value="Hôtels&Restaurants">Hôtels & Restaurants</option>
+				<option value="1" name="option" category="1">Objets</option>
+				<option value="2"  name="option" category="2">Appartements</option>
+				<option value="3" name="option" category="3">Hôtels & Restaurants</option>
 			  </option>
 			</select>
 			<hr/>

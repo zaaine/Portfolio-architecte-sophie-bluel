@@ -5,7 +5,6 @@ function modal() {
   openModal.addEventListener("click", () => {
     const modal = document.querySelector(".modal");
     modal.style.display = "block";
-    
 
     const modalClose = document.querySelector(".modalClose");
     modalClose.addEventListener("click", (event) => {
@@ -13,8 +12,6 @@ function modal() {
       modal.style.display = "none";
       event.preventDefault();
     });
-
- 
   });
 
   const modal = document.querySelector(".modal");
@@ -106,7 +103,6 @@ function deleteWork(workId) {
 // navigation entre les modales
 
 function navigationModales() {
-  
   const btnAddPhoto = document.querySelector(".btnAddModal");
 
   btnAddPhoto.addEventListener("click", (event) => {
@@ -116,32 +112,81 @@ function navigationModales() {
 
     const openmodal2 = document.querySelector(".openmodal2");
     openmodal2.style.display = "block";
-    console.log("add");
   });
 
-  const btnReturnGallery= document.querySelector(".returnGallery")
-  btnReturnGallery.addEventListener("click", ()=>{
-
+  const btnReturnGallery = document.querySelector(".returnGallery");
+  btnReturnGallery.addEventListener("click", () => {
     const openmodal2 = document.querySelector(".openmodal2");
     openmodal2.style.display = "none";
-    console.log("add");
 
     const modal = document.querySelector(".modal");
     modal.style.display = "block";
-  })
-
+  });
 
   const modal2 = document.querySelector(".openmodal2");
   modal2.addEventListener("click", () => {
     modal2.style.display = "none";
-    
   });
 
   const modal2Containt = document.querySelector(".modal2_Containt");
   modal2Containt.addEventListener("click", function (e) {
     e.stopPropagation();
   });
-
 }
 
-navigationModales()
+navigationModales();
+
+// envois de nouveau travaux
+// fonction envoyer "Send a new work"
+
+function sendWork (){
+
+
+
+const form = document.querySelector("#image-form")
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    const image = document.getElementById("input_photo").files[0];
+    const title = document.getElementById("title-input").value;
+
+    baliseCategory.addEventListener("select", checkFormulaire);
+    const baliseCategory = document.querySelectorAll(
+      '#category-input[name = "option"]'
+    );
+    let category = "";
+    for (let c = 0; c < baliseCategory.length; c++) {
+      if (baliseCategory[c].selected) {
+        category = baliseCategory[c].category.value;
+        break;
+      }
+    }
+    console.log(category); // afficher la valeur de category
+  
+    
+    formData.append("image", image);
+    formData.append("title", title);
+    formData.append("category", category);
+
+
+    const multipart = new Headers();
+    multipart.append("Accept", "application/json");
+    multipart.append("Authorization", `Bearer ${token}`);
+
+
+    await fetch("http://localhost:5678/api/works", {
+        method: "POST",
+        headers: multipart,
+        body: formData,
+      })
+      .then((response) => console.log(response))
+    .catch((error) => console.log(error));
+
+})
+
+  
+}
+
+
+sendWork ()
