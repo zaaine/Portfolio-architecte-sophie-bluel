@@ -139,54 +139,64 @@ navigationModales();
 // envois de nouveau travaux
 // fonction envoyer "Send a new work"
 
-function sendWork (){
-
-
-
-const form = document.querySelector("#image-form")
-form.addEventListener("submit", async (e) => {
+async function sendWork() {
+  const form = document.querySelector("#image-form");
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
     const image = document.getElementById("input_photo").files[0];
     const title = document.getElementById("title-input").value;
-
-    baliseCategory.addEventListener("select", checkFormulaire);
     const baliseCategory = document.querySelectorAll(
-      '#category-input[name = "option"]'
+      " #category-input option "
     );
-    let category = "";
+    const category = "";
+
     for (let c = 0; c < baliseCategory.length; c++) {
-      if (baliseCategory[c].selected) {
-        category = baliseCategory[c].category.value;
-        break;
-      }
+      baliseCategory[c].addEventListener("click", (event) => {
+        const category = event.target.baliseCategory[c].category.value;
+        console.log(category);
+      });
+      break;
     }
-    console.log(category); // afficher la valeur de category
-  
-    
+
     formData.append("image", image);
     formData.append("title", title);
     formData.append("category", category);
-
 
     const multipart = new Headers();
     multipart.append("Accept", "application/json");
     multipart.append("Authorization", `Bearer ${token}`);
 
-
-    await fetch("http://localhost:5678/api/works", {
-        method: "POST",
-        headers: multipart,
-        body: formData,
-      })
-      .then((response) => console.log(response))
-    .catch((error) => console.log(error));
-
+    await fetch("http://localhost:5678/api/works/", {
+      method: "POST",
+      headers: multipart,
+      body: formData,
+    })
+    .then((response) => console.log(response))
+    .catch((error) => console.error(error))
+    .then((work) => {
+        const works = JSON.stringify(work)
+        //ajout du nouveau projet dans gallery
+        const projet = genererGallery(works);
+        const title = works.title
+        const image = works.image
+        projet.setAttribute("data-id") = works.category
+        const gallery = document.querySelector(".gallery");
+        gallery.appendChild(projet);
+        projet.appendChild(image);
+        projet.appendChild(title);
+        
+        
+        //ajout du nouveau projet dans modal
+        const projetModal = createModalGallery(works);
+        const galleryModal = document.querySelector(".contenairGallery");
+        const imageElement = works.image
+        galleryModal.appendChild(imageElement);
+        const deleteIcon = document.createElement("i");
+        deleteIcon.className = "fa-solid fa-trash-can icon-delete";
+        projet.appendChild(deleteIcon);
+    });
 })
-
-  
 }
-
-
-sendWork ()
+sendWork();
