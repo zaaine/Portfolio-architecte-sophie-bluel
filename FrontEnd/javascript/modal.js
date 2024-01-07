@@ -150,16 +150,18 @@ async function sendWork() {
     const baliseCategory = document.querySelectorAll(
       " #category-input option "
     );
-    const category = "";
-
-    for (let c = 0; c < baliseCategory.length; c++) {
-      baliseCategory[c].addEventListener("click", (event) => {
-        const category = event.target.baliseCategory[c].category.value;
-        console.log(category);
-      });
-      break;
-    }
-
+    var selectElmt = document.getElementById("category-input");
+    var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
+    var category = selectElmt.options[selectElmt.selectedIndex].value;
+    // for (let c = 0; c < baliseCategory.length; c++) {
+    //     baliseCategory[c].addEventListener("select", (event) => {
+    //         const selected = event.target.baliseCategory[c].category.value;
+    //         console.log(selected);
+    //     });
+    //         return  selected
+    // }
+    // const category = selected
+    
     formData.append("image", image);
     formData.append("title", title);
     formData.append("category", category);
@@ -175,28 +177,31 @@ async function sendWork() {
     })
     .then((response) => console.log(response))
     .catch((error) => console.error(error))
-    .then((work) => {
-        const works = JSON.stringify(work)
+    .then((works) => {
+        // const works = JSON.stringify(work)
         //ajout du nouveau projet dans gallery
+        const gallery = document.querySelector(".gallery");
         const projet = genererGallery(works);
         const title = works.title
         const image = works.image
         projet.setAttribute("data-id") = works.category
-        const gallery = document.querySelector(".gallery");
         gallery.appendChild(projet);
         projet.appendChild(image);
         projet.appendChild(title);
-        
         
         //ajout du nouveau projet dans modal
         const projetModal = createModalGallery(works);
         const galleryModal = document.querySelector(".contenairGallery");
         const imageElement = works.image
-        galleryModal.appendChild(imageElement);
+        projetModal.setAttribute("data-id") = works.category
+        galleryModal.appendChild(projetModal);
+        projetModal.appendChild(imageElement);
         const deleteIcon = document.createElement("i");
         deleteIcon.className = "fa-solid fa-trash-can icon-delete";
-        projet.appendChild(deleteIcon);
+        projetModal.appendChild(deleteIcon);
     });
 })
 }
 sendWork();
+
+
