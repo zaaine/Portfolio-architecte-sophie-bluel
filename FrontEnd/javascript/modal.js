@@ -150,18 +150,11 @@ async function sendWork() {
     const baliseCategory = document.querySelectorAll(
       " #category-input option "
     );
-    var selectElmt = document.getElementById("category-input");
-    var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
-    var category = selectElmt.options[selectElmt.selectedIndex].value;
-    // for (let c = 0; c < baliseCategory.length; c++) {
-    //     baliseCategory[c].addEventListener("select", (event) => {
-    //         const selected = event.target.baliseCategory[c].category.value;
-    //         console.log(selected);
-    //     });
-    //         return  selected
-    // }
-    // const category = selected
-    
+    const selectElmt = document.getElementById("category-input");
+    const valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
+    const category = selectElmt.options[selectElmt.selectedIndex].value;
+    console.log(category);
+
     formData.append("image", image);
     formData.append("title", title);
     formData.append("category", category);
@@ -177,23 +170,23 @@ async function sendWork() {
     })
     .then((response) => console.log(response))
     .catch((error) => console.error(error))
-    .then((works) => {
+    .then((work) => {
         // const works = JSON.stringify(work)
         //ajout du nouveau projet dans gallery
         const gallery = document.querySelector(".gallery");
-        const projet = genererGallery(works);
-        const title = works.title
-        const image = works.image
-        projet.setAttribute("data-id") = works.category
+        const projet = genererGallery(work);
+        const title = work.title
+        const image = work.image
+        projet.setAttribute("data-id") = work.category
         gallery.appendChild(projet);
         projet.appendChild(image);
         projet.appendChild(title);
         
         //ajout du nouveau projet dans modal
-        const projetModal = createModalGallery(works);
+        const projetModal = createModalGallery(work);
         const galleryModal = document.querySelector(".contenairGallery");
-        const imageElement = works.image
-        projetModal.setAttribute("data-id") = works.category
+        const imageElement = work.image
+        projetModal.setAttribute("data-id") = work.category
         galleryModal.appendChild(projetModal);
         projetModal.appendChild(imageElement);
         const deleteIcon = document.createElement("i");
