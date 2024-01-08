@@ -144,21 +144,13 @@ async function sendWork() {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
     const image = document.getElementById("input_photo").files[0];
     const title = document.getElementById("title-input").value;
-    // const baliseCategory = document.querySelectorAll(
-    //   " #category-input option "
-    // );
     const selectElmt = document.getElementById("category-input");
-    // const valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
     const category = selectElmt.options[selectElmt.selectedIndex].value;
-    console.log(category);
-
+    
     if(image !== ""){
-        const btnPicture = document.querySelector(".button_add_picture")
-        
-        
+        const btnPicture = document.querySelector(".button_add_picture")       
         btnPicture.style.width = " 7.8125rem";
     }
 
@@ -168,21 +160,25 @@ async function sendWork() {
 
     }
 
+    const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
     formData.append("category", category);
 
-    const multipart = new Headers();
-    multipart.append("Accept", "application/json");
-    multipart.append("Authorization", `Bearer ${token}`);
+    const token = localStorage.getItem("token");
+
+    const headers = new Headers();
+    headers.append("Accept", "application/json");
+    headers.append("Content-type", "multipart/form-data")
+    headers.append("Authorization", `Bearer ${token}`);
 
     await fetch("http://localhost:5678/api/works/", {
       method: "POST",
-      headers: multipart,
       body: formData,
+          headers: headers,
     })
     .then((response) => console.log(response))
-    .catch((error) => console.error(error))
+    .catch((error) => console.error(error)) 
     .then((work) => {
         // const works = JSON.stringify(work)
         //ajout du nouveau projet dans gallery
@@ -207,6 +203,7 @@ async function sendWork() {
         projetModal.appendChild(deleteIcon);
     });
 })
+window.location = "index.html";
 }
 sendWork();
 
