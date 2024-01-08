@@ -147,13 +147,26 @@ async function sendWork() {
     const formData = new FormData();
     const image = document.getElementById("input_photo").files[0];
     const title = document.getElementById("title-input").value;
-    const baliseCategory = document.querySelectorAll(
-      " #category-input option "
-    );
+    // const baliseCategory = document.querySelectorAll(
+    //   " #category-input option "
+    // );
     const selectElmt = document.getElementById("category-input");
-    const valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
+    // const valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
     const category = selectElmt.options[selectElmt.selectedIndex].value;
     console.log(category);
+
+    if(image !== ""){
+        const btnPicture = document.querySelector(".button_add_picture")
+        
+        
+        btnPicture.style.width = " 7.8125rem";
+    }
+
+    if (image !==  "" && title !== "" && selectElmt.value !== 0 ) {
+        const btnValider = document.querySelector(".button_send_new_work")
+        btnValider.style.background = "#1D6154"  
+
+    }
 
     formData.append("image", image);
     formData.append("title", title);
