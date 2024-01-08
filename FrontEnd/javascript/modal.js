@@ -68,6 +68,8 @@ function createModalGallery() {
         });
       }
     });
+
+    
 }
 
 createModalGallery();
@@ -150,8 +152,11 @@ async function sendWork() {
     const category = selectElmt.options[selectElmt.selectedIndex].value;
     
     if(image !== ""){
-        const btnPicture = document.querySelector(".button_add_picture")       
-        btnPicture.style.width = " 7.8125rem";
+        const btnPicture = document.querySelector(".button_add_picture")
+        btnPicture.addEventListener("click", ()=> {
+            btnPicture.style.width = " 7.8125rem";
+
+        })       
     }
 
     if (image !==  "" && title !== "" && selectElmt.value !== 0 ) {
@@ -163,39 +168,40 @@ async function sendWork() {
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
-    formData.append("category", category);
+    formData.append("categoryId", category);
 
     const token = localStorage.getItem("token");
 
     const headers = new Headers();
     headers.append("Accept", "application/json");
-    headers.append("Content-type", "multipart/form-data")
+    // headers.append("Content-type", "multipart/form-data")
     headers.append("Authorization", `Bearer ${token}`);
 
     await fetch("http://localhost:5678/api/works/", {
       method: "POST",
+      headers: headers,
       body: formData,
-          headers: headers,
     })
     .then((response) => console.log(response))
     .catch((error) => console.error(error)) 
-    .then((work) => {
+    .then((works) => {
+        return works.json()
         // const works = JSON.stringify(work)
         //ajout du nouveau projet dans gallery
+        const projet = genererGallery(works);
         const gallery = document.querySelector(".gallery");
-        const projet = genererGallery(work);
-        const title = work.title
-        const image = work.image
-        projet.setAttribute("data-id") = work.category
+        const title = works.title;
+        const image = works.image;
+        projet.setAttribute("data-id") = works.category
         gallery.appendChild(projet);
         projet.appendChild(image);
         projet.appendChild(title);
         
         //ajout du nouveau projet dans modal
-        const projetModal = createModalGallery(work);
+        const projetModal = createModalGallery(works);
         const galleryModal = document.querySelector(".contenairGallery");
-        const imageElement = work.image
-        projetModal.setAttribute("data-id") = work.category
+        const imageElement = works.image
+        projetModal.setAttribute("data-id") = works.category
         galleryModal.appendChild(projetModal);
         projetModal.appendChild(imageElement);
         const deleteIcon = document.createElement("i");
@@ -203,7 +209,7 @@ async function sendWork() {
         projetModal.appendChild(deleteIcon);
     });
 })
-window.location = "index.html";
+
 }
 sendWork();
 

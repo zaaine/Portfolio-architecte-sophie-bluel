@@ -11,7 +11,6 @@ function validerEmail() {
     let baliseEmail = email.value;
     let emailRegExp = new RegExp("[a-z0-9._-]+@[a-z0-9._-]+\\.[a-z0-9._-]+");
     if (!emailRegExp.test(baliseEmail)) {
-      console.log("L'email n'est pas valide.");
       labelEmail.style.color = "red";
       message = "L'email n'est pas valide.";
       afficherMessageErreur(message);
@@ -23,6 +22,7 @@ function validerEmail() {
 }
 
 validerEmail();
+
 // cette fonction verifie que le mot de passe contient plus de 4 caractères
 // ***** Il faut retirer la fonction affichermessageErreur quand le else est ok
 
