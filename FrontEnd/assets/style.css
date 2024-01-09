@@ -621,9 +621,9 @@ hr {
 .input_photo{
   opacity: 0;
   position: relative;
-  top: -71px;
+  bottom: 4rem;
   width: 163px;
-  height: 1.12rem;
+  height: 2.12rem;
 }
 
 .preview-image {
