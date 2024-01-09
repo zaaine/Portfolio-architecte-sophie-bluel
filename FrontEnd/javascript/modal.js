@@ -150,14 +150,14 @@ async function sendWork() {
     const title = document.getElementById("title-input").value;
     const selectElmt = document.getElementById("category-input");
     const category = selectElmt.options[selectElmt.selectedIndex].value;
-    
-    if(image !== ""){
-        const btnPicture = document.querySelector(".button_add_picture")
-        btnPicture.addEventListener("click", ()=> {
-            btnPicture.style.width = " 7.8125rem";
+    console.log(image);
+   
+    const btnPicture = document.querySelector(".button_add_picture")
+    btnPicture.addEventListener("click", ()=> {
+    btnPicture.style.width = " 7.8125rem";
 
-        })       
-    }
+     })       
+    
 
     if (image !==  "" && title !== "" && selectElmt.value !== 0 ) {
         const btnValider = document.querySelector(".button_send_new_work")
@@ -168,12 +168,13 @@ async function sendWork() {
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);
-    formData.append("categoryId", category);
+    formData.append("category", category);
+
 
     const token = localStorage.getItem("token");
 
     const headers = new Headers();
-    headers.append("Accept", "application/json");
+    // headers.append("Accept", "application/json");
     // headers.append("Content-type", "multipart/form-data")
     headers.append("Authorization", `Bearer ${token}`);
 
@@ -184,30 +185,30 @@ async function sendWork() {
     })
     .then((response) => console.log(response))
     .catch((error) => console.error(error)) 
-    .then((works) => {
-        return works.json()
-        // const works = JSON.stringify(work)
-        //ajout du nouveau projet dans gallery
-        const projet = genererGallery(works);
-        const gallery = document.querySelector(".gallery");
-        const title = works.title;
-        const image = works.image;
-        projet.setAttribute("data-id") = works.category
-        gallery.appendChild(projet);
-        projet.appendChild(image);
-        projet.appendChild(title);
+    // .then((response2) => {
+    //     const  works = responses2.json();
         
-        //ajout du nouveau projet dans modal
-        const projetModal = createModalGallery(works);
-        const galleryModal = document.querySelector(".contenairGallery");
-        const imageElement = works.image
-        projetModal.setAttribute("data-id") = works.category
-        galleryModal.appendChild(projetModal);
-        projetModal.appendChild(imageElement);
-        const deleteIcon = document.createElement("i");
-        deleteIcon.className = "fa-solid fa-trash-can icon-delete";
-        projetModal.appendChild(deleteIcon);
-    });
+    //     //ajout du nouveau projet dans gallery
+    //     const projet = genererGallery(works);
+    //     const gallery = document.querySelector(".gallery");
+    //     const title = works.title;
+    //     const image = works.image;
+    //     projet.setAttribute("data-id") = works.category
+    //     gallery.appendChild(projet);
+    //     projet.appendChild(image);
+    //     projet.appendChild(title);
+        
+    //     //ajout du nouveau projet dans modal
+    //     const projetModal = createModalGallery(works);
+    //     const galleryModal = document.querySelector(".contenairGallery");
+    //     const imageElement = works.image
+    //     projetModal.setAttribute("data-id") = works.category
+    //     galleryModal.appendChild(projetModal);
+    //     projetModal.appendChild(imageElement);
+    //     const deleteIcon = document.createElement("i");
+    //     deleteIcon.className = "fa-solid fa-trash-can icon-delete";
+    //     projetModal.appendChild(deleteIcon);
+    // });
 })
 
 }

@@ -29,11 +29,12 @@ validerEmail();
 function validerPassword() {
   const password = document.getElementById("password");
   const labelPassword = document.querySelector(" label[for=password] ");
+  console.log(password);
 
-  password.addEventListener("change", (event) => {
+  if (password !== undefined) { password.addEventListener("change", (event) => {
     let balisePassword = password.value;
     let passwordRegExp = new RegExp("[A-Za-z0-9._-]{6}");
-
+  
     if (!passwordRegExp.test(balisePassword)) {
       console.log("mot de passe ko ");
       labelPassword.style.color = "red";
@@ -45,6 +46,7 @@ function validerPassword() {
       EffacerMessageErreur();
     }
   });
+}
 }
 
 validerPassword()

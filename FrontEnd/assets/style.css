@@ -415,7 +415,9 @@ input {
   cursor: pointer;
 }
 
-
+.inputPassword{
+  inset: 0;
+}
 
 .modal {
   display: none;
