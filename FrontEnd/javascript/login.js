@@ -29,7 +29,7 @@ validerEmail();
 function validerPassword() {
   const password = document.getElementById("password");
   const labelPassword = document.querySelector(" label[for=password] ");
-  console.log(password);
+  
 
   if (password !== undefined) { password.addEventListener("change", (event) => {
     let balisePassword = password.value;

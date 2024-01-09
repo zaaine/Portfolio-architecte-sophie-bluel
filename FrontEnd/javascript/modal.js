@@ -47,7 +47,7 @@ function createModalGallery() {
       for (const projets of mesprojets) {
         const projet = document.createElement("figure");
 
-        const imageElement = document.createElement("img");
+        const imageElement = document.createElement("img");’
         imageElement.src = projets.imageUrl;
         imageElement.className = "photoModal";
 
@@ -59,7 +59,7 @@ function createModalGallery() {
         projet.appendChild(imageElement);
 
         const deleteIcon = document.createElement("i");
-        deleteIcon.className = "fa-solid fa-trash-can icon-delete";
+        deleteIcon.className = "fa-solid fa-trash-can icon-delete";     
         projet.appendChild(deleteIcon);
 
         deleteIcon.addEventListener("click", (event) => {
@@ -91,6 +91,7 @@ function deleteWork(workId) {
         `figure[data-id = "${workId}"]`
       );
       projetReset.style.display = "none";
+      
     } else if (response.status === 401) {
       throw new Error("Unauthorized");
     } else if (response.status === 500) {
@@ -141,6 +142,8 @@ navigationModales();
 // envois de nouveau travaux
 // fonction envoyer "Send a new work"
 
+  
+
 async function sendWork() {
   const form = document.querySelector("#image-form");
   form.addEventListener("submit", async (e) => {
@@ -155,8 +158,8 @@ async function sendWork() {
     const btnPicture = document.querySelector(".button_add_picture")
     btnPicture.addEventListener("click", ()=> {
     btnPicture.style.width = " 7.8125rem";
-
-     })       
+    console.log("action");
+     })  
     
 
     if (image !==  "" && title !== "" && selectElmt.value !== 0 ) {
