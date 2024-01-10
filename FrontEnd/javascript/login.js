@@ -1,7 +1,9 @@
+/* ************************************************************ */
 // Gestion de la page login.html
-
-// mise en place d'une regle de conformité du champs à remplir
-// *** Cette fonction valide la présence d'un mail au bon format afin de pouvoir faire une requête API conforme
+// mise en place d'une regle de conformité des champs à remplir puis faire la requête API
+/* *********************************************************************************************************** */
+// *** Cette fonction valide la présence d'un mail au bon format avant de faire une requête API
+/* ********************************************************************************************************** */
 
 function validerEmail() {
   const email = document.getElementById("email");
@@ -23,35 +25,38 @@ function validerEmail() {
 
 validerEmail();
 
-// cette fonction verifie que le mot de passe contient plus de 4 caractères
-// ***** Il faut retirer la fonction affichermessageErreur quand le else est ok
+/* ********************************************************************************************* */
+// cette fonction verifie que le mot de passe contient plus de 4 caractères avant la requête API
+/* ********************************************************************************************* */
 
 function validerPassword() {
   const password = document.getElementById("password");
   const labelPassword = document.querySelector(" label[for=password] ");
-  
 
-  if (password !== undefined) { 
+  if (password !== undefined) {
     password.addEventListener("change", () => {
-    let balisePassword = password.value;
-    let passwordRegExp = new RegExp("[A-Za-z0-9._-]{6}");
-  
-    if (!passwordRegExp.test(balisePassword)) {
-      console.log("mot de passe ko ");
-      labelPassword.style.color = "red";
-      message = "Le mot de passe est erroné";
-      afficherMessageErreur(message);
-    } else {
-      console.log("mot de passe ok");
-      labelPassword.style.color = "green";
-      EffacerMessageErreur();
-    }
-  });
-}
+      let balisePassword = password.value;
+      let passwordRegExp = new RegExp("[A-Za-z0-9._-]{6}");
+
+      if (!passwordRegExp.test(balisePassword)) {
+        console.log("mot de passe ko ");
+        labelPassword.style.color = "red";
+        message = "Le mot de passe est erroné";
+        afficherMessageErreur(message);
+      } else {
+        console.log("mot de passe ok");
+        labelPassword.style.color = "green";
+        EffacerMessageErreur();
+      }
+    });
+  }
 }
 
-validerPassword()
+validerPassword();
+
+/* ************************************************************ */
 // Cette fonction va afficher un message d'erreur correspondant
+/* ************************************************************ */
 
 function afficherMessageErreur() {
   let spanErreurMessage = document.querySelector(".spanErreurMessage");
@@ -61,7 +66,9 @@ function afficherMessageErreur() {
   textErreur.style.color = "red";
 }
 
-// Cette fonction va masqué le message d'erreur
+/* ************************************************************************ */
+// Cette fonction va masqué le message d'erreur après correction utilisateur
+/* ************************************************************************ */
 
 function EffacerMessageErreur(afficherMessageErreur) {
   let spanErreurMessage = document.querySelector(".spanErreurMessage");
@@ -71,11 +78,12 @@ function EffacerMessageErreur(afficherMessageErreur) {
   textErreur.style.color = "white";
 }
 
-// cette fonction va gerer les informations du formulaire et du submit
+/* ************************************************************************************************ */
+// cette fonction va gerer les informations du formulaire et du submit puis adresser la requête API
+/* ************************************************************************************************* */
 
+// Gestion du submit "connection "sur le formulaire
 function gestionLogin(validerEmail, validerPassword) {
-  // Gestion du submit "connection "sur le formulaire
-
   let btnConnection = document.querySelector(".input_connection");
   let usersLogin = {
     email: document.getElementById("email"),

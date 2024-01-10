@@ -26,7 +26,7 @@ function modal() {
   });
 }
 
-//   la modale doit se fermer au click sur l'exterieur de la modal
+
 
 modal();
 
@@ -99,8 +99,8 @@ function deleteWork(workId) {
 }
 
 // Gestion de la modale 2 "Ajout de Travaux"
-
 // navigation entre les modales
+
 
 function navigationModales() {
   const btnAddPhoto = document.querySelector(".btnAddModal");
@@ -136,8 +136,7 @@ function navigationModales() {
 
 navigationModales();
 
-// envois de nouveau travaux
-// fonction envoyer "Send a new work"
+// La fonction previewImg va afficher l'image selectionner dans le formulaire d'ajout et l'afficher en miniature.
 
 function previewImg() {
   document.getElementById("input_photo").addEventListener("change", (event) => {
@@ -157,9 +156,13 @@ function previewImg() {
 
 previewImg();
 
+// envois des nouveaux projet
+// fonction envoyer "Send a new work"
+
 async function sendWork() {
-  const form = document.querySelector("#image-form");
+  const form = document.querySelector("#formulaireAddWork");
   form.addEventListener("submit", async (e) => {
+    console.log(form);
     e.preventDefault();
 
     const image = document.getElementById("input_photo").files[0];
@@ -180,8 +183,7 @@ async function sendWork() {
     const token = localStorage.getItem("token");
 
     const headers = new Headers();
-    // headers.append("Accept", "application/json");
-    // headers.append("Content-type", "multipart/form-data")
+    headers.append("Accept", "application/json");
     headers.append("Authorization", `Bearer ${token}`);
 
     await fetch("http://localhost:5678/api/works/", {
@@ -191,30 +193,7 @@ async function sendWork() {
     })
       .then((response) => console.log(response))
       .catch((error) => console.error(error));
-    // .then((response2) => {
-    //     const  works = responses2.json();
 
-    //     //ajout du nouveau projet dans gallery
-    //     const projet = genererGallery(works);
-    //     const gallery = document.querySelector(".gallery");
-    //     const title = works.title;
-    //     const image = works.image;
-    //     projet.setAttribute("data-id") = works.category
-    //     gallery.appendChild(projet);
-    //     projet.appendChild(image);
-    //     projet.appendChild(title);
-
-    //     //ajout du nouveau projet dans modal
-    //     const projetModal = createModalGallery(works);
-    //     const galleryModal = document.querySelector(".contenairGallery");
-    //     const imageElement = works.image
-    //     projetModal.setAttribute("data-id") = works.category
-    //     galleryModal.appendChild(projetModal);
-    //     projetModal.appendChild(imageElement);
-    //     const deleteIcon = document.createElement("i");
-    //     deleteIcon.className = "fa-solid fa-trash-can icon-delete";
-    //     projetModal.appendChild(deleteIcon);
-    // });
   });
 }
 sendWork();

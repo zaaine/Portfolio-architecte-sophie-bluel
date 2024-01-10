@@ -1,52 +1,49 @@
-// // import fonction de gestion de l'onglet nav login et logout
-// import {isconnected} from "./login.js";
-
 // stockage des données API dans le local storage
 let mesprojets = window.localStorage.getItem("works");
 let mescategories = window.localStorage.getItem("categories");
 let usersLogin = window.localStorage.getItem("data");
 let token = window.localStorage.getItem("token");
 
+/* ************************************************************ */
+// récupération de la galery via API - via works
+/* ************************************************************ */
 
-
-
-// récupération de la galery via API
 fetch("http://localhost:5678/api/works")
   .then((response) => {
-    
     return response.json();
   })
   .then((works) => {
-    // console.table(works);
     genererGallery(works);
     const mesprojets = JSON.stringify(works);
     window.localStorage.setItem("works", mesprojets);
   });
 
+/* ************************************************************ */
 //   récupération du chemin categories
+/* ************************************************************ */
+
 fetch("http://localhost:5678/api/categories")
   .then((response2) => {
-   
     return response2.json();
   })
   .then((categories) => {
-  
     const mescategories = JSON.stringify(categories);
     window.localStorage.setItem("categories", mescategories);
   });
 
+/* ************************************************************ */
 // génération de la gallery via Works
+/* ************************************************************ */
+
 function genererGallery(works) {
-  // récupération de l'élément du DOM pour accueillir les travaux
   const portfolio = document.querySelector("#portfolio");
   const gallery = document.querySelector(".gallery");
   portfolio.appendChild(gallery);
-  
 
+  /* ************************************************************************************* */
   //   création d'une boucle pour recupérer l'objet travaux et l'afficher dans la galerie
-
+  /* *************************************************************************************** */
   for (const projets of works) {
-   
     const projet = document.createElement("figure");
 
     const imageElement = document.createElement("img");
@@ -62,13 +59,13 @@ function genererGallery(works) {
     projet.appendChild(imageElement);
     projet.appendChild(titleElement);
   }
-
- 
 }
 
+/* ************************************************************ */
 // Gestion des boutons Gallery pour filtrage des projets
+// le boutons clicked va afficher la class filtred
+/* ************************************************************ */
 
-// le boutons clické va afficher la class filtred
 const boutonsAtion = document.querySelectorAll(".containerBtn button");
 for (i = 0; i < boutonsAtion.length; i++) {
   boutonsAtion[i].addEventListener("click", (event) => {
@@ -76,15 +73,13 @@ for (i = 0; i < boutonsAtion.length; i++) {
     for (j = 0; j < filtresHS.length; j++) {
       filtresHS[j].classList.remove("filtred");
     }
-
     event.target.classList.add("filtred");
-
-    
   });
 }
 
-// fonctionnalité filtre tous
-
+/* ************************************************************ */
+// fonctionnalité filtre "TOUS"
+/* ************************************************************ */
 const filtreTous = document.getElementById("btnFiltreTous");
 filtreTous.addEventListener("click", tousFiltre);
 
@@ -101,7 +96,9 @@ function tousFiltre() {
   });
 }
 
-// fonctionnalité filtre objet
+/* ************************************************************ */
+// fonctionnalité filtre "OBJET"
+/* ************************************************************ */
 
 const filtreObjet = document.getElementById("btnFiltreObjets");
 filtreObjet.addEventListener("click", objetfiltre);
@@ -110,7 +107,7 @@ function objetfiltre() {
   const projetsObjet = document.querySelectorAll(".gallery figure ");
   projetsObjet.forEach((projetObjet) => {
     const categoryId = projetObjet.getAttribute("category-id");
-    
+
     if (categoryId === "1") {
       projetObjet.style.display = "block";
     } else {
@@ -118,9 +115,9 @@ function objetfiltre() {
     }
   });
 }
-
-// fonction filtre Appartements
-
+/* ************************************************************ */
+// fonction filtre "APPARTEMENTS"
+/* ************************************************************ */
 const filtreAppartement = document.getElementById("btnFiltreAppartements");
 filtreAppartement.addEventListener("click", appartementfiltre);
 
@@ -136,8 +133,9 @@ function appartementfiltre() {
     }
   });
 }
-
-// fonction filtre hôtel & restaurant
+/* ************************************************************ */
+// fonction filtre "hôtels & restaurants"
+/* ************************************************************ */
 
 const filtreHotelRestaurant = document.getElementById("btnFiltreHotelR");
 filtreHotelRestaurant.addEventListener("click", hotelEtRestaurantFiltre);
@@ -156,36 +154,33 @@ function hotelEtRestaurantFiltre() {
 }
 
 
+
+
+/* ************************************************************ */
 // fonction qui va gerer le login et le logout de l'utilisateur
+/* ************************************************************ */
 
 function isconnected(gestionLogin) {
-  
-    if (localStorage.token) {
+  if (localStorage.token) {
+    let login = document.getElementById("login");
+    let logout = document.getElementById("logout");
 
-        let login = document.getElementById("login");
-        let logout = document.getElementById("logout");
-    
-        login.style.display = "none";
-        logout.style.display = "block";
+    login.style.display = "none";
+    logout.style.display = "block";
 
+    let isconnectedTomodify = document.querySelector(".isconnectedTomodify");
+    isconnectedTomodify.style.display = "block";
 
-        let isconnectedTomodify = document.querySelector(".isconnectedTomodify")
-        isconnectedTomodify.style.display = "block"
+    let containerBtn = document.querySelector(".containerBtn");
+    containerBtn.style.display = "none";
 
-        let containerBtn = document.querySelector(".containerBtn")
-        containerBtn.style.display = "none"
-    
-    
-        logout.addEventListener("click",() => {
-            login.style.display = "block";
-            logout.style.display = "none";
-            containerBtn.style.display = "block"
-        localStorage.removeItem("token")    
-
-    })
-     
-};
+    logout.addEventListener("click", () => {
+      login.style.display = "block";
+      logout.style.display = "none";
+      containerBtn.style.display = "block";
+      localStorage.removeItem("token");
+    });
+  }
 }
 
-isconnected()
-
+isconnected();

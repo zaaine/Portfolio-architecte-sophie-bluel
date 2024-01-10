@@ -326,8 +326,8 @@ footer nav ul {
 }
 
 /* ************************************************************ */
-/* Page Login */
-
+                    /* Page Login */
+/* ************************************************************ */
 .mainContainer_login {
   display: flex;
   flex-direction: column;
@@ -402,20 +402,19 @@ input {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  /* height: 1rem; */
   position: relative;
   bottom: 4px;
   display: none;
 }
-
-/* Modal - galerie photo */
-/* Gestion de la galerie photo */
-
+/* ************************************************************ */
+   /* Modal 1  - Supprimer un element de la galerie photo */
+       /* Gestion de la galerie photo  par Admin*/
+/* ************************************************************ */
 .open-modal {
   cursor: pointer;
 }
 
-.inputPassword{
+.inputPassword {
   inset: 0;
 }
 
@@ -459,11 +458,9 @@ input {
   top: 1rem;
 }
 
-.titleGalleryModal{
+.titleGalleryModal {
   margin-top: 0.75rem;
 }
-
-
 
 .modalClose {
   width: 95%;
@@ -488,7 +485,6 @@ input {
   height: 2.25rem;
   position: relative;
   top: 0.81rem;
-  
 }
 
 .contenairGallery {
@@ -514,9 +510,9 @@ input {
   padding: 0.25rem 0.19rem 0.25rem 0.19rem;
   cursor: pointer;
 }
-
-/* modal 2  */
-
+/* ************************************************************ */
+              /* modal 2 - Ajouter un projet */
+/* ************************************************************ */  
 .openmodal2 {
   position: fixed;
   inset: 0;
@@ -594,7 +590,6 @@ hr {
   background-color: #cbd6dc;
   color: #306685;
   border-radius: 3.75rem;
-  /* padding: 0.63rem 2.06rem; */
   margin: 1rem 0.87rem;
   cursor: pointer;
   border: 0px;
@@ -616,10 +611,9 @@ hr {
   align-items: center;
   justify-content: center;
   border-radius: 0.1875rem;
-
 }
 
-.input_photo{
+.input_photo {
   opacity: 0;
   position: relative;
   bottom: 4rem;
@@ -637,7 +631,6 @@ hr {
   width: 8.0625rem;
   height: 10.5625rem;
   object-fit: cover;
-
 }
 
 .preview_text {
