@@ -31,7 +31,8 @@ function validerPassword() {
   const labelPassword = document.querySelector(" label[for=password] ");
   
 
-  if (password !== undefined) { password.addEventListener("change", (event) => {
+  if (password !== undefined) { 
+    password.addEventListener("change", () => {
     let balisePassword = password.value;
     let passwordRegExp = new RegExp("[A-Za-z0-9._-]{6}");
   
