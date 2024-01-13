@@ -328,6 +328,23 @@ footer nav ul {
 /* ************************************************************ */
                     /* Page Login */
 /* ************************************************************ */
+.vuEdition{
+  display: none;
+}
+
+.editionMode{
+  height: 3.6875rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  color: white;
+  gap: 1rem;
+  text-decoration: none;
+  /* display: none; */
+}
+
+
 .mainContainer_login {
   display: flex;
   flex-direction: column;

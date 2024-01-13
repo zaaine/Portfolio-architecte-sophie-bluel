@@ -171,12 +171,18 @@ function isconnected(gestionLogin) {
     let isconnectedTomodify = document.querySelector(".isconnectedTomodify");
     isconnectedTomodify.style.display = "block";
 
+    let editionView = document.querySelector(".vuEdition");
+    editionView.style.display = "block";
+
+
+
     let containerBtn = document.querySelector(".containerBtn");
     containerBtn.style.display = "none";
 
     logout.addEventListener("click", () => {
       login.style.display = "block";
       logout.style.display = "none";
+      editionView.style.display = "none";
       containerBtn.style.display = "block";
       localStorage.removeItem("token");
     });
