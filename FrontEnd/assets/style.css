@@ -326,13 +326,16 @@ footer nav ul {
 }
 
 /* ************************************************************ */
-                    /* Page Login */
+/* Page Login */
 /* ************************************************************ */
-.vuEdition{
+.vuEdition {
   display: none;
+  position: relative;
+  width: 85rem;
+  right: 8rem;
 }
 
-.editionMode{
+.editionMode {
   height: 3.6875rem;
   display: flex;
   justify-content: center;
@@ -341,9 +344,7 @@ footer nav ul {
   color: white;
   gap: 1rem;
   text-decoration: none;
- 
 }
-
 
 .mainContainer_login {
   display: flex;
@@ -424,8 +425,8 @@ input {
   display: none;
 }
 /* ************************************************************ */
-   /* Modal 1  - Supprimer un element de la galerie photo */
-       /* Gestion de la galerie photo  par Admin*/
+/* Modal 1  - Supprimer un element de la galerie photo */
+/* Gestion de la galerie photo  par Admin*/
 /* ************************************************************ */
 .open-modal {
   cursor: pointer;
@@ -528,8 +529,8 @@ input {
   cursor: pointer;
 }
 /* ************************************************************ */
-              /* modal 2 - Ajouter un projet */
-/* ************************************************************ */  
+/* modal 2 - Ajouter un projet */
+/* ************************************************************ */
 .openmodal2 {
   position: fixed;
   inset: 0;
