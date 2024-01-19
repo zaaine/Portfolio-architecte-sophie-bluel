@@ -1,5 +1,6 @@
+/* ************************************************************ */
 // gestion de la boite de dialogue modal 1 (ouvrir et fermer)
-
+/* ************************************************************ */
 function modal() {
   const openModal = document.querySelector(".open-modal");
   openModal.addEventListener("click", () => {
@@ -31,16 +32,17 @@ function modal() {
 modal();
 
 // closeModal()
-
+/* ************************************************************ */
 // fonction pour insérer les photos dans la gallery-modal
 // fontion generer les photos présente dans l'API
-
+/* ************************************************************ */
 function createModalGallery() {
   fetch("http://localhost:5678/api/works")
     .then((response) => {
       return response.json();
     })
     .then((mesprojets) => {
+      
       const galleryModal = document.querySelector(".contenairGallery");
       galleryModal.classList.add = "contenairGallery";
 
@@ -72,7 +74,9 @@ function createModalGallery() {
 
 createModalGallery();
 
+/* ************************************************************ */
 // création d'une fonction pour supprimer des projets de la galerie
+/* ************************************************************ */
 
 function deleteWork(workId) {
   const token = localStorage.getItem("token");
@@ -85,23 +89,24 @@ function deleteWork(workId) {
     },
   }).then((response) => {
     if (response.status === 200) {
-      window.preventDefault();
+      add.preventDefault();
       const projetReset = document.querySelector(
         `figure[data-id = "${workId}"]`
-      );
-      projetReset.style.display = "none";
+        );
+        projetReset.style.display = "none";
+        
     } else if (response.status === 401) {
       throw new Error("Unauthorized");
     } else if (response.status === 500) {
       throw new Error("Unexpected Behaviour");
     }
-    return false;
+    return genererGallery();
   });
 }
-
+/* ************************************************************ */
 // Gestion de la modale 2 "Ajout de Travaux"
 // navigation entre les modales
-
+/* ************************************************************ */
 
 function navigationModales() {
   const btnAddPhoto = document.querySelector(".btnAddModal");
@@ -136,9 +141,10 @@ function navigationModales() {
 }
 
 navigationModales();
-
-// La fonction previewImg va afficher l'image selectionner dans le formulaire d'ajout et l'afficher en miniature.
-
+/* ************************************************************ */
+// La fonction previewImg va afficher l'image selectionner dans
+// le formulaire d'ajout et l'afficher en miniature.
+/* ************************************************************ */
 function previewImg() {
   document.getElementById("input_photo").addEventListener("change", (event) => {
     const btnPicture = document.querySelector(".button_add_picture");
@@ -157,8 +163,11 @@ function previewImg() {
 
 previewImg();
 
-// envois des nouveaux projet
+
+/* ************************************************************ */
+// envois des nouveaux projets
 // fonction envoyer "Send a new work"
+/* ************************************************************ */
 
 async function sendWork() {
   const form = document.querySelector("#formulaireAddWork");
