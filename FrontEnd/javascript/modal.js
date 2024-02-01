@@ -27,8 +27,6 @@ function modal() {
   });
 }
 
-
-
 modal();
 
 // closeModal()
@@ -42,7 +40,6 @@ function createModalGallery() {
       return response.json();
     })
     .then((mesprojets) => {
-      
       const galleryModal = document.querySelector(".contenairGallery");
       galleryModal.classList.add = "contenairGallery";
 
@@ -89,20 +86,25 @@ function deleteWork(workId) {
     },
   }).then((response) => {
     if (response.status === 200) {
-      preventDefault();
+      const openmodal2 = document.querySelector(".openmodal2");
+      openmodal2.style.display = "none";
+
+      const modal = document.querySelector(".modal");
+      modal.style.display = "block";
+
       const projetReset = document.querySelector(
         `figure[data-id = "${workId}"]`
-        );
-        projetReset.style.display = "none";
-        
+      );
+      projetReset.style.display = "none";
     } else if (response.status === 401) {
       throw new Error("Unauthorized");
     } else if (response.status === 500) {
       throw new Error("Unexpected Behaviour");
     }
-    return genererGallery();
+    // return genererGallery();
   });
 }
+
 /* ************************************************************ */
 // Gestion de la modale 2 "Ajout de Travaux"
 // navigation entre les modales
@@ -163,16 +165,14 @@ function previewImg() {
 
 previewImg();
 
-
 /* ************************************************************ */
 // envois des nouveaux projets
 // fonction envoyer "Send a new work"
 /* ************************************************************ */
 
-async function sendWork() {
+async function sendWork(genererGallery) {
   const form = document.querySelector("#formulaireAddWork");
   form.addEventListener("submit", async (e) => {
-    console.log(form);
     e.preventDefault();
 
     const image = document.getElementById("input_photo").files[0];
@@ -201,9 +201,15 @@ async function sendWork() {
       headers: headers,
       body: formData,
     })
-      .then((response) => console.log(response))
-      .catch((error) => console.error(error));
+      genererGallery()
+     
 
+      .catch((error) => console.error(error));
   });
+  const openmodal2 = document.querySelector(".openmodal2");
+  openmodal2.style.display = "none";
+
+  const modal = document.querySelector(".modal");
+  modal.style.display = "Block";
 }
 sendWork();
