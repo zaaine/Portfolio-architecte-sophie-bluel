@@ -201,15 +201,27 @@ async function sendWork(genererGallery) {
       headers: headers,
       body: formData,
     })
-      genererGallery()
-     
-
-      .catch((error) => console.error(error));
+    .catch((error) => console.error(error));
   });
-  const openmodal2 = document.querySelector(".openmodal2");
-  openmodal2.style.display = "none";
-
+  
+  // genererGallery()
   const modal = document.querySelector(".modal");
   modal.style.display = "Block";
+
+  const modalClose = document.querySelector(".modalClose");
+  modalClose.addEventListener("click", (event) => {
+    const modal = document.querySelector(".modal");
+    modal.style.display = "none";
+    event.preventDefault();
+  });
+
+modal()
 }
 sendWork();
+
+
+// const openmodal2 = document.querySelector(".openmodal2");
+// openmodal2.style.display = "none";
+
+// const modal = document.querySelector(".modal");
+// modal.style.display = "Block";
