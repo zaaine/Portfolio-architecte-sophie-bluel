@@ -185,6 +185,9 @@ function isconnected(gestionLogin) {
       editionView.style.display = "none";
       containerBtn.style.display = "block";
       localStorage.removeItem("token");
+      
+      const modal = document.querySelector(".modal");
+      modal.style.display = "none";
     });
   }
 }

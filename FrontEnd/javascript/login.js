@@ -39,12 +39,10 @@ function validerPassword() {
       let passwordRegExp = new RegExp("[A-Za-z0-9._-]{6}");
 
       if (!passwordRegExp.test(balisePassword)) {
-        console.log("mot de passe ko ");
         labelPassword.style.color = "red";
         message = "Le mot de passe est erroné";
         afficherMessageErreur(message);
       } else {
-        console.log("mot de passe ok");
         labelPassword.style.color = "green";
         EffacerMessageErreur();
       }
@@ -123,6 +121,7 @@ function gestionLogin(validerEmail, validerPassword) {
         if (data) {
           localStorage.setItem("token", data.token);
           window.location = "index.html";
+          
           console.log(data);
         } else {
           throw new Error("l'objet DATA n'a pas été chargé");

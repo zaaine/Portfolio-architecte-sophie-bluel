@@ -1,3 +1,5 @@
+// import {isconnected} from "..script"
+
 /* ************************************************************ */
 // gestion de la boite de dialogue modal 1 (ouvrir et fermer)
 /* ************************************************************ */
@@ -63,6 +65,7 @@ function createModalGallery() {
 
         deleteIcon.addEventListener("click", (event) => {
           event.preventDefault();
+          event.target.parentNode.style.display = "none";
           deleteWork(projets.id);
         });
       }
@@ -183,6 +186,8 @@ async function sendWork(genererGallery) {
     if (image !== "" && title !== "" && selectElmt.value !== 0) {
       const btnValider = document.querySelector(".button_send_new_work");
       btnValider.style.background = "#1D6154";
+
+
     }
 
     const formData = new FormData();
@@ -201,27 +206,33 @@ async function sendWork(genererGallery) {
       headers: headers,
       body: formData,
     })
-    .catch((error) => console.error(error));
-  });
-  
-  // genererGallery()
-  const modal = document.querySelector(".modal");
-  modal.style.display = "Block";
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Projet non ajouté");
+      })
+      .then((works) => {
+              const modal = document.querySelector(".modal");
+      modal.style.display = "Block";
 
-  const modalClose = document.querySelector(".modalClose");
-  modalClose.addEventListener("click", (event) => {
-    const modal = document.querySelector(".modal");
-    modal.style.display = "none";
-    event.preventDefault();
+      const openmodal2 = document.querySelector(".openmodal2");
+      openmodal2.style.display = "none";
+
+      const modalClose = document.querySelector(".modalClose");
+      modalClose.addEventListener("click", (event) => {
+        const modal = document.querySelector(".modal");
+        modal.style.display = "none";
+        event.preventDefault();
+      });
+      genererGallery(works);
+        createModalGallery();
+      })
+      .catch((error) => console.error(error));
   });
 
-modal()
+
 }
 sendWork();
 
 
-// const openmodal2 = document.querySelector(".openmodal2");
-// openmodal2.style.display = "none";
-
-// const modal = document.querySelector(".modal");
-// modal.style.display = "Block";
