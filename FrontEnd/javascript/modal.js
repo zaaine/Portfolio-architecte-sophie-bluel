@@ -45,6 +45,8 @@ function createModalGallery() {
       const galleryModal = document.querySelector(".contenairGallery");
       galleryModal.classList.add = "contenairGallery";
 
+      galleryModal.innerHTML = "";
+
       for (const projets of mesprojets) {
         const projet = document.createElement("figure");
 
@@ -173,7 +175,7 @@ previewImg();
 // fonction envoyer "Send a new work"
 /* ************************************************************ */
 
-async function sendWork(genererGallery) {
+async function sendWork() {
   const form = document.querySelector("#formulaireAddWork");
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -186,8 +188,6 @@ async function sendWork(genererGallery) {
     if (image !== "" && title !== "" && selectElmt.value !== 0) {
       const btnValider = document.querySelector(".button_send_new_work");
       btnValider.style.background = "#1D6154";
-
-
     }
 
     const formData = new FormData();
@@ -212,27 +212,32 @@ async function sendWork(genererGallery) {
         }
         throw new Error("Projet non ajouté");
       })
-      .then((works) => {
-              const modal = document.querySelector(".modal");
-      modal.style.display = "Block";
-
-      const openmodal2 = document.querySelector(".openmodal2");
-      openmodal2.style.display = "none";
-
-      const modalClose = document.querySelector(".modalClose");
-      modalClose.addEventListener("click", (event) => {
+      .then(() => {
         const modal = document.querySelector(".modal");
-        modal.style.display = "none";
-        event.preventDefault();
-      });
-      genererGallery(works);
+        modal.style.display = "Block";
+
+        const openmodal2 = document.querySelector(".openmodal2");
+        openmodal2.style.display = "none";
+
+        const modalClose = document.querySelector(".modalClose");
+        modalClose.addEventListener("click", (event) => {
+          const modal = document.querySelector(".modal");
+          modal.style.display = "none";
+          event.preventDefault();
+        });
+
+        fetch("http://localhost:5678/api/works")
+          .then((response) => {
+            return response.json();
+          })
+          .then((works) => {
+            genererGallery(works);
+          });
+
         createModalGallery();
       })
+
       .catch((error) => console.error(error));
   });
-
-
 }
 sendWork();
-
-
