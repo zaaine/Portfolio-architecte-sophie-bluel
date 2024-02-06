@@ -40,6 +40,8 @@ function genererGallery(works) {
   const gallery = document.querySelector(".gallery");
   portfolio.appendChild(gallery);
 
+  gallery.innerHTML= "";
+
   /* ************************************************************************************* */
   //   création d'une boucle pour recupérer l'objet travaux et l'afficher dans la galerie
   /* *************************************************************************************** */
