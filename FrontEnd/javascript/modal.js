@@ -14,6 +14,7 @@ function modal() {
       const modal = document.querySelector(".modal");
       modal.style.display = "none";
       event.preventDefault();
+      location.reload();
     });
   });
 
