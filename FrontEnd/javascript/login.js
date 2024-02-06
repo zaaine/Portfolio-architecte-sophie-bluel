@@ -17,7 +17,7 @@ function validerEmail() {
       message = "L'email n'est pas valide.";
       afficherMessageErreur(message);
     } else {
-      labelEmail.style.color = "green";
+      // labelEmail.style.color = "green";
       EffacerMessageErreur();
     }
   });
@@ -43,7 +43,7 @@ function validerPassword() {
         message = "Le mot de passe est erroné";
         afficherMessageErreur(message);
       } else {
-        labelPassword.style.color = "green";
+        // labelPassword.style.color = "green";
         EffacerMessageErreur();
       }
     });
