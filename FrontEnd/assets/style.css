@@ -138,6 +138,7 @@ header {
   display: flex;
   justify-content: space-between;
   margin: 50px 0;
+  margin-top: 4.69rem;
 }
 section {
   margin: 50px 0;
@@ -330,9 +331,10 @@ footer nav ul {
 /* ************************************************************ */
 .vuEdition {
   display: none;
-  position: relative;
-  width: 85rem;
-  right: 8rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
 }
 
 .editionMode {
