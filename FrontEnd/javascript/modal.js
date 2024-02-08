@@ -14,7 +14,7 @@ function modal() {
       const modal = document.querySelector(".modal");
       modal.style.display = "none";
       event.preventDefault();
-      location.reload();
+      // location.reload();
     });
   });
 
@@ -102,13 +102,26 @@ function deleteWork(workId) {
         `figure[data-id = "${workId}"]`
       );
       projetReset.style.display = "none";
+      
+        // genererGallery();
+      
     } else if (response.status === 401) {
       throw new Error("Unauthorized");
     } else if (response.status === 500) {
       throw new Error("Unexpected Behaviour");
     }
-    // return genererGallery();
+    
   });
+  fetch("http://localhost:5678/api/works")
+  .then((response) => {
+    return response.json();
+  })
+  .then((works) => {
+    genererGallery(works);
+  });
+
+createModalGallery();
+
 }
 
 /* ************************************************************ */
