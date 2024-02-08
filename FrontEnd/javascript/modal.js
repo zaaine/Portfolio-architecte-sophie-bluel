@@ -164,6 +164,13 @@ navigationModales();
 // le formulaire d'ajout et l'afficher en miniature.
 /* ************************************************************ */
 function previewImg() {
+  // const formulaireAjout = document.getElementById("formulaireAddWork");
+
+  // const imgPreview = document.createElement("img");
+  // imgPreview.setAttribute("id", "preview-input");
+  // formulaireAjout.appendChild(imgPreview);
+  // console.log(imgPreview);
+
   document.getElementById("input_photo").addEventListener("change", (event) => {
     const btnPicture = document.querySelector(".button_add_picture");
     const imgPreview = document.getElementById("preview-input");
@@ -251,7 +258,9 @@ async function sendWork() {
 
         let previewInput = document.getElementById("preview-input");
         previewInput.src = "";
-        const btnPicture = document.querySelector(".button_add_picture");  
+        // previewInput.remove()
+
+        const btnPicture = document.querySelector(".button_add_picture");
         btnPicture.style.background = "#CBD6DC";
       })
 
