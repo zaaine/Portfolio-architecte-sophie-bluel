@@ -224,16 +224,11 @@ async function sendWork() {
         throw new Error("Projet non ajouté");
       })
       .then(() => {
-        
-
         const modal = document.querySelector(".modal");
         modal.style.display = "Block";
 
         const openmodal2 = document.querySelector(".openmodal2");
         openmodal2.style.display = "none";
-        
-        
-        
 
         const modalClose = document.querySelector(".modalClose");
         modalClose.addEventListener("click", (event) => {
@@ -251,7 +246,13 @@ async function sendWork() {
           });
 
         createModalGallery();
-        
+
+        document.querySelector(".modal2_formulaire").reset();
+
+        let previewInput = document.getElementById("preview-input");
+        previewInput.src = "";
+        const btnPicture = document.querySelector(".button_add_picture");  
+        btnPicture.style.background = "#CBD6DC";
       })
 
       .catch((error) => console.error(error));
