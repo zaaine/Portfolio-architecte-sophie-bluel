@@ -102,26 +102,23 @@ function deleteWork(workId) {
         `figure[data-id = "${workId}"]`
       );
       projetReset.style.display = "none";
-      
-        // genererGallery();
-      
+
+      // genererGallery();
     } else if (response.status === 401) {
       throw new Error("Unauthorized");
     } else if (response.status === 500) {
       throw new Error("Unexpected Behaviour");
     }
-    
   });
   fetch("http://localhost:5678/api/works")
-  .then((response) => {
-    return response.json();
-  })
-  .then((works) => {
-    genererGallery(works);
-  });
+    .then((response) => {
+      return response.json();
+    })
+    .then((works) => {
+      genererGallery(works);
+    });
 
-createModalGallery();
-
+  createModalGallery();
 }
 
 /* ************************************************************ */
@@ -227,11 +224,16 @@ async function sendWork() {
         throw new Error("Projet non ajouté");
       })
       .then(() => {
+        
+
         const modal = document.querySelector(".modal");
         modal.style.display = "Block";
 
         const openmodal2 = document.querySelector(".openmodal2");
         openmodal2.style.display = "none";
+        
+        
+        
 
         const modalClose = document.querySelector(".modalClose");
         modalClose.addEventListener("click", (event) => {
@@ -249,6 +251,7 @@ async function sendWork() {
           });
 
         createModalGallery();
+        
       })
 
       .catch((error) => console.error(error));
