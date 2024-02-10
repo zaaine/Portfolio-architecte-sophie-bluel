@@ -102,8 +102,6 @@ function deleteWork(workId) {
         `figure[data-id = "${workId}"]`
       );
       projetReset.style.display = "none";
-
-      // genererGallery();
     } else if (response.status === 401) {
       throw new Error("Unauthorized");
     } else if (response.status === 500) {
@@ -164,19 +162,13 @@ navigationModales();
 // le formulaire d'ajout et l'afficher en miniature.
 /* ************************************************************ */
 function previewImg() {
-  // const formulaireAjout = document.getElementById("formulaireAddWork");
-
-  // const imgPreview = document.createElement("img");
-  // imgPreview.setAttribute("id", "preview-input");
-  // formulaireAjout.appendChild(imgPreview);
-  // console.log(imgPreview);
-
   document.getElementById("input_photo").addEventListener("change", (event) => {
     const btnPicture = document.querySelector(".button_add_picture");
     const imgPreview = document.getElementById("preview-input");
     const file = event.target.files[0];
     const reader = new FileReader();
     reader.addEventListener("load", () => {
+      imgPreview.style.display = "block";
       imgPreview.src = reader.result;
       btnPicture.style.background = "none";
     });
@@ -258,7 +250,7 @@ async function sendWork() {
 
         let previewInput = document.getElementById("preview-input");
         previewInput.src = "";
-        // previewInput.remove()
+        previewInput.style.display = "contents";
 
         const btnPicture = document.querySelector(".button_add_picture");
         btnPicture.style.background = "#CBD6DC";

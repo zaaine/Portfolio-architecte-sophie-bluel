@@ -17,7 +17,6 @@ function validerEmail() {
       message = "L'email n'est pas valide.";
       afficherMessageErreur(message);
     } else {
-      // labelEmail.style.color = "green";
       EffacerMessageErreur();
     }
   });
@@ -43,7 +42,6 @@ function validerPassword() {
         message = "Le mot de passe est erroné";
         afficherMessageErreur(message);
       } else {
-        // labelPassword.style.color = "green";
         EffacerMessageErreur();
       }
     });
@@ -121,13 +119,11 @@ function gestionLogin(validerEmail, validerPassword) {
         if (data) {
           localStorage.setItem("token", data.token);
           window.location = "index.html";
-          
-          console.log(data);
         } else {
           throw new Error("l'objet DATA n'a pas été chargé");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   });
 }
 
