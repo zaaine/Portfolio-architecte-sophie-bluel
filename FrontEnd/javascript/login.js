@@ -104,11 +104,11 @@ function gestionLogin(validerEmail, validerPassword) {
         if (response.status === 200) {
           return response.json();
         } else if (response.status === 401) {
-          message = "Not Authorized === erreur 401";
+          message = "L'email et/ou le mot de passe sont incorrects";
           afficherMessageErreur(message);
           throw new Error("Not Authorized");
         } else if (response.status === 404) {
-          message = "User not found = erreur 404";
+          message = "L'email et/ou le mot de passe sont incorrects";
           afficherMessageErreur(message);
           throw new Error("User not found");
         }
