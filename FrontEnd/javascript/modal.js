@@ -1,5 +1,3 @@
-// import {isconnected} from "..script"
-
 /* ************************************************************ */
 // gestion de la boite de dialogue modal 1 (ouvrir et fermer)
 /* ************************************************************ */
@@ -14,7 +12,6 @@ function modal() {
       const modal = document.querySelector(".modal");
       modal.style.display = "none";
       event.preventDefault();
-      // location.reload();
     });
   });
 
@@ -32,7 +29,6 @@ function modal() {
 
 modal();
 
-// closeModal()
 /* ************************************************************ */
 // fonction pour insérer les photos dans la gallery-modal
 // fontion generer les photos présente dans l'API
@@ -180,12 +176,34 @@ function previewImg() {
 
 previewImg();
 
+function checkForm2() {
+  const form = document.querySelector("#formulaireAddWork");
+  form.addEventListener("input", async (e) => {
+    e.preventDefault();
+
+    const image = document.getElementById("input_photo").files[0];
+    const title = document.getElementById("title-input").value;
+    const selectElmt = document.getElementById("category-input");
+    const category = selectElmt.options[selectElmt.selectedIndex].value;
+
+    const btnValider = document.querySelector(".button_send_new_work");
+
+    if (image !== "" && title !== "" && selectElmt.value !== "") {
+      btnValider.style.background = "#1D6154";
+    } else {
+      btnValider.style.background = "#A7A7A7";
+    }
+  });
+}
+
 /* ************************************************************ */
 // envois des nouveaux projets
 // fonction envoyer "Send a new work"
 /* ************************************************************ */
 
 async function sendWork() {
+  checkForm2();
+
   const form = document.querySelector("#formulaireAddWork");
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -195,10 +213,12 @@ async function sendWork() {
     const selectElmt = document.getElementById("category-input");
     const category = selectElmt.options[selectElmt.selectedIndex].value;
 
-    if (image !== "" && title !== "" && selectElmt.value !== 0) {
-      const btnValider = document.querySelector(".button_send_new_work");
-      btnValider.style.background = "#1D6154";
-    }
+    // const btnValider = document.querySelector(".button_send_new_work");
+    // if (image.value !== "" && title.value !== "" && selectElmt.value !== 0) {
+    //   btnValider.style.background = "#1D6154";
+    // } else{
+    //   btnValider.style.background = "#A7A7A7"
+    // }
 
     const formData = new FormData();
     formData.append("image", image);
@@ -254,6 +274,9 @@ async function sendWork() {
 
         const btnPicture = document.querySelector(".button_add_picture");
         btnPicture.style.background = "#CBD6DC";
+
+        const btnValider = document.querySelector(".button_send_new_work");
+        btnValider.style.background = "#A7A7A7";
       })
 
       .catch((error) => console.error(error));
