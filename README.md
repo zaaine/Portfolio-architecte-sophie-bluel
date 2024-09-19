@@ -46,6 +46,6 @@ L'objectif principal de ce projet est de fournir un portfolio dynamique et admin
 
 # Portfolio d'Architecte - Sophie Bluel
 
-![Capture d'écran du portfolio](./assets/images/SophieBluelArchitect.png)
+![Capture d'écran du portfolio](./FrontEnd/assets/images/SophieBluelArchitect.png)
 
 Ce projet consiste en la création du portfolio en ligne de Sophie Bluel, une architecte d'intérieur...
