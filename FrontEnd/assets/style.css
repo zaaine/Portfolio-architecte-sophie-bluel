@@ -241,7 +241,7 @@ li:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 45px;
   padding-bottom: 51px;
 }
 
@@ -258,6 +258,7 @@ li:hover {
   flex-shrink: 0;
   box-sizing: border-box;
   cursor: pointer;
+  padding: 1rem;
 }
 
 .filtersColor {

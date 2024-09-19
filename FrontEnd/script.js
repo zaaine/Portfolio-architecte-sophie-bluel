@@ -40,11 +40,12 @@ function genererGallery(works) {
   const gallery = document.querySelector(".gallery");
   portfolio.appendChild(gallery);
 
-  gallery.innerHTML= "";
+  gallery.innerHTML = "";
 
   /* ************************************************************************************* */
   //   création d'une boucle pour recupérer l'objet travaux et l'afficher dans la galerie
   /* *************************************************************************************** */
+
   for (const projets of works) {
     const projet = document.createElement("figure");
 
@@ -64,99 +65,58 @@ function genererGallery(works) {
 }
 
 /* ************************************************************ */
-// Gestion des boutons Gallery pour filtrage des projets
-// le boutons clicked va afficher la class filtred
+// Gestion des boutons de filtrage avec la classe 'filtred'
 /* ************************************************************ */
-
 const boutonsAtion = document.querySelectorAll(".containerBtn button");
-for (i = 0; i < boutonsAtion.length; i++) {
+
+for (let i = 0; i < boutonsAtion.length; i++) {
   boutonsAtion[i].addEventListener("click", (event) => {
+    // Supprimer la classe 'filtred' des autres boutons
     const filtresHS = document.querySelectorAll(".containerBtn button.filtred");
-    for (j = 0; j < filtresHS.length; j++) {
+    for (let j = 0; j < filtresHS.length; j++) {
       filtresHS[j].classList.remove("filtred");
     }
+
+    // Ajouter la classe 'filtred' au bouton cliqué
     event.target.classList.add("filtred");
+
+    // Appliquer le filtre correspondant
+    const categoryId = event.target.getAttribute("data-category-id");
+    filtrerProjets(categoryId); // Filtrer en fonction de la catégorie
   });
 }
 
 /* ************************************************************ */
-// fonctionnalité filtre "TOUS"
+// Fonction de filtrage générique par catégorie
 /* ************************************************************ */
-const filtreTous = document.getElementById("btnFiltreTous");
-filtreTous.addEventListener("click", tousFiltre);
+function filtrerProjets(categoryId) {
+  const tousProjets = document.querySelectorAll(".gallery figure");
 
-function tousFiltre() {
-  const tousprojets = document.querySelectorAll(".gallery figure ");
-  tousprojets.forEach((projets) => {
-    const categoryId = projets.getAttribute("category-id");
+  tousProjets.forEach((projet) => {
+    const projetCategoryId = projet.getAttribute("category-id");
 
-    if (categoryId >= "0") {
-      projets.style.display = "block";
+    // Si categoryId est "0" (Tous), afficher tous les projets
+    if (categoryId === "0" || projetCategoryId === categoryId) {
+      projet.style.display = "block";
     } else {
-      projets.style.display = "none";
+      projet.style.display = "none";
     }
   });
 }
 
 /* ************************************************************ */
-// fonctionnalité filtre "OBJET"
+// Associer les événements des boutons à leur filtre respectif
 /* ************************************************************ */
-
-const filtreObjet = document.getElementById("btnFiltreObjets");
-filtreObjet.addEventListener("click", objetfiltre);
-
-function objetfiltre() {
-  const projetsObjet = document.querySelectorAll(".gallery figure ");
-  projetsObjet.forEach((projetObjet) => {
-    const categoryId = projetObjet.getAttribute("category-id");
-
-    if (categoryId === "1") {
-      projetObjet.style.display = "block";
-    } else {
-      projetObjet.style.display = "none";
-    }
-  });
-}
-/* ************************************************************ */
-// fonction filtre "APPARTEMENTS"
-/* ************************************************************ */
-const filtreAppartement = document.getElementById("btnFiltreAppartements");
-filtreAppartement.addEventListener("click", appartementfiltre);
-
-function appartementfiltre() {
-  const projetAppartements = document.querySelectorAll(".gallery figure");
-  projetAppartements.forEach((projetAppartement) => {
-    const categoryId = projetAppartement.getAttribute("category-id");
-
-    if (categoryId === "2") {
-      projetAppartement.style.display = "block";
-    } else {
-      projetAppartement.style.display = "none";
-    }
-  });
-}
-/* ************************************************************ */
-// fonction filtre "hôtels & restaurants"
-/* ************************************************************ */
-
-const filtreHotelRestaurant = document.getElementById("btnFiltreHotelR");
-filtreHotelRestaurant.addEventListener("click", hotelEtRestaurantFiltre);
-
-function hotelEtRestaurantFiltre() {
-  const projetsHotelRest = document.querySelectorAll(".gallery figure");
-  projetsHotelRest.forEach((projethotelRest) => {
-    const categoryId = projethotelRest.getAttribute("category-id");
-
-    if (categoryId === "3") {
-      projethotelRest.style.display = "block";
-    } else {
-      projethotelRest.style.display = "none";
-    }
-  });
-}
-
-
-
+document.getElementById("btnFiltreTous").setAttribute("data-category-id", "0");
+document
+  .getElementById("btnFiltreObjets")
+  .setAttribute("data-category-id", "1");
+document
+  .getElementById("btnFiltreAppartements")
+  .setAttribute("data-category-id", "2");
+document
+  .getElementById("btnFiltreHotelR")
+  .setAttribute("data-category-id", "3");
 
 /* ************************************************************ */
 // fonction qui va gerer le login et le logout de l'utilisateur
@@ -176,8 +136,6 @@ function isconnected(gestionLogin) {
     let editionView = document.querySelector(".vuEdition");
     editionView.style.display = "block";
 
-
-
     let containerBtn = document.querySelector(".containerBtn");
     containerBtn.style.display = "none";
 
@@ -187,7 +145,7 @@ function isconnected(gestionLogin) {
       editionView.style.display = "none";
       containerBtn.style.display = "block";
       localStorage.removeItem("token");
-      
+
       const modal = document.querySelector(".modal");
       modal.style.display = "none";
     });

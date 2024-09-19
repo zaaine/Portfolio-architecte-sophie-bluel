@@ -213,13 +213,6 @@ async function sendWork() {
     const selectElmt = document.getElementById("category-input");
     const category = selectElmt.options[selectElmt.selectedIndex].value;
 
-    // const btnValider = document.querySelector(".button_send_new_work");
-    // if (image.value !== "" && title.value !== "" && selectElmt.value !== 0) {
-    //   btnValider.style.background = "#1D6154";
-    // } else{
-    //   btnValider.style.background = "#A7A7A7"
-    // }
-
     const formData = new FormData();
     formData.append("image", image);
     formData.append("title", title);

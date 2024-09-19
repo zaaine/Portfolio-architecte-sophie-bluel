@@ -1,0 +1,31 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Frontend du portfolio de Sophie Bluel",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "live-server --port=3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaaine/Portfolio-architecte-sophie-bluel-zaaine.guithub.io.git"
+  },
+  "keywords": [
+    "portfolio",
+    "architecte",
+    "frontend",
+    "javascript",
+    "responsive",
+    "web-design"
+  ],
+  "author": "zaaine aziz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zaaine/Portfolio-architecte-sophie-bluel-zaaine.guithub.io/issues"
+  },
+  "homepage": "https://github.com/zaaine/Portfolio-architecte-sophie-bluel-zaaine.guithub.io#readme",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
